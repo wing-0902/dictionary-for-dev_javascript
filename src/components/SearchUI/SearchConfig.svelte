@@ -1,20 +1,20 @@
 <script lang='ts'>
-  let searchType: string = 'title';
+  let isTitle: boolean = true;
 
-  function changeType(toWhat: string) {
-    searchType = toWhat;
+  function changeType(toWhich: boolean) {
+    isTitle = toWhich;
   }
 </script>
 
 <div class='root'>
   <div class='searchConfigRow'>
     <button
-      on:click={() => changeType('title')}
+      on:click={() => changeType(true)}
     >
       見出し
     </button>
     <button
-      on:click={() => changeType('content')}
+      on:click={() => changeType(false)}
     >
       用例・全文
     </button>
