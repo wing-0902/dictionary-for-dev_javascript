@@ -3,18 +3,21 @@
   let searchKeyword: string = '';
 </script>
 
-<div>
+<div class='root'>
   <div class='searchSlotRow'>
     <input type='text' bind:value={searchKeyword} />
   </div>
 </div>
 
 <style lang='scss'>
-  .searchSlotRow {
-    display: flex;
-    input {
-      width: 100%;
-      height: 40px;
+  .root {
+    padding: 4px;
+    .searchSlotRow {
+      display: flex;
+      input {
+        width: 100%;
+        height: 40px;
+      }
     }
   }
 </style>
