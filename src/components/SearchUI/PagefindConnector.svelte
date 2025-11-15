@@ -7,7 +7,7 @@
     new PagefindUI({
       element: ".search",
       showSubResults: true,
-      baseUrl: "/content_search/",
+      bundlePath: "https://ts.dictionary4.dev/content_search/",
       pageSize: 8,
     });
   });
