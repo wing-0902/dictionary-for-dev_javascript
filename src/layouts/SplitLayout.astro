@@ -49,7 +49,7 @@ if (title === defaultTitle) {
     </header>
     <div class='contentSlot'>
       <section data-astro-transition-persist class="searchSlot">
-        <SearchConfig client:only="svelte" />
+        <SearchConfig client:load />
       </section>
       <section class="content">
         <slot />
