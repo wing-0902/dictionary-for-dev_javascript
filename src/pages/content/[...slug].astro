@@ -18,10 +18,12 @@ const { Content } = await render( entry );
 <SplitLayout
   title={entry.data.title}
 >
-  <h1>{entry.data.title}</h1>
-  <section class="mdxSection">
-    <Content />
-  </section>
+  <div data-pagefind-body>
+    <h1>{entry.data.title}</h1>
+    <section class="mdxSection">
+      <Content />
+    </section>
+  </div>
 </Layout>
 
 <style lang="scss">
