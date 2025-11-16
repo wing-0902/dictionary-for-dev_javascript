@@ -24,7 +24,7 @@
     </button>
   </div>
   <div class='pagefindSlot'>
-    <PagefindConnector isTitle={isTitle} />
+    <PagefindConnector />
   </div>
 </div>
 
