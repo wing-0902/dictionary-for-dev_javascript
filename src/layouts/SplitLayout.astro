@@ -38,6 +38,7 @@ if (title === defaultTitle) {
     <!-- タイトルとSEO -->
     <title>{metaTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <ClientRouter />
   </head>
