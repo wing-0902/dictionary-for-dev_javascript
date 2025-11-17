@@ -8,7 +8,8 @@
 
   onMount(() => {
     new PagefindUI({
-      element: ".search",
+      element: "#search",
+      language: 'ja',
       showSubResults: true,
       showImages: false,
       bundlePath: pagefindBundlePath,
@@ -19,13 +20,13 @@
 </script>
 
 <section class="searchBox">
-  <div class="search"></div>
+  <div id="search"></div>
 </section>
 
 <style lang="scss">
   .searchBox {
     margin-top: 95px;
-    .search {
+    #search {
       --pagefind-ui-primary: var(--a-default);
       --pagefind-ui-primary-hover: var(--a-hover);
       --pagefind-ui-scale: 1;
