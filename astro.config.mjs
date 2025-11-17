@@ -26,7 +26,12 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: 'M PLUS 1 Code',
         cssVariable: "--font-m-plus-1-code"
-      }
+      },
+      {
+        provider: fontProviders.google(),
+        name: 'Zen Kaku Gothic New',
+        cssVariable: '--font-zen-kaku-gothic-new'
+      },
     ]
   }
 });

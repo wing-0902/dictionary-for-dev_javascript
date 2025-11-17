@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
 
 import '../styles/globals.scss';
 
@@ -27,6 +28,8 @@ if (title === defaultTitle) {
   metaTitle = `${title} | ${defaultTitle}`
 }
 ---
+
+<Font cssVariable="--font-zen-kaku-gothic-new" preload />
 
 <html lang="ja">
   <head>
