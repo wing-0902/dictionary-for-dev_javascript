@@ -7,7 +7,7 @@ tsInclude: true
 
 ## 1. 変数を宣言
 
-```js
+```js title='index.js'
 // JavaScript
 const userName = '太郎';
 // 変数「userName」を「太郎」にする
