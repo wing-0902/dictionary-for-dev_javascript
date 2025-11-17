@@ -38,7 +38,7 @@
       --pagefind-ui-border-radius: 31px;
       --pagefind-ui-image-border-radius: 8px;
       --pagefind-ui-image-box-ratio: 3 / 2;
-      --pagefind-ui-font: ZenMaru;
+      --pagefind-ui-font: var(--font-zen-kaku-gothic-new);
       --pagefind-ui-tag: rgba(0, 16, 72, 0.7);
     }
   }
