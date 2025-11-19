@@ -28,6 +28,8 @@ if (title === defaultTitle) {
 } else {
   metaTitle = `${title} | ${defaultTitle}`
 }
+
+const 正規URL = new URL(Astro.url.pathname, Astro.site).href; 
 ---
 
 <html lang="ja">
@@ -41,6 +43,7 @@ if (title === defaultTitle) {
     <title>{metaTitle}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={正規URL} />
 
     <ClientRouter />
     <Font cssVariable="--font-zen-kaku-gothic-new" preload />
