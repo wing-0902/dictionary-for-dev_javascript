@@ -6,6 +6,8 @@
 
   let pagefind = null;
 
+  let oneResult = null;
+
   onMount(() => {
     if (isTitle) {
       pagefind = import("https://tsdict.mdmbypass.wing.osaka/h1_only_search/pagefind.js");
@@ -32,6 +34,20 @@
       pagefind.init();
     }
   }
+
+  function 検索を実行する(searchWord) {
+    if (searchWord != '') {
+      const search = pagefind.search(searchWord);
+      oneResult = search;
+    }
+  }
+
+  $: 検索を実行する(searchWord);
+
+  function 検索結果を表示(num) {
+    const oneResult = search.results[num].data();
+    return oneResult;
+  }
 </script>
 
 <div class='root'>
@@ -51,7 +67,10 @@
     >
       用例・全文
     </button>
-  </div>
+    {#if (oneResult != null)}
+      <p>{oneResult.meta.title}</p>
+    {/if}
+    </div>
 </div>
 
 <style lang='scss'>
