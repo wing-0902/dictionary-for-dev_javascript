@@ -152,9 +152,9 @@
 
   <div class="search-output">
     {#if loading}
-      <p>検索中...</p>
+      <p class='ステータス'>検索中...</p>
     {:else if query && searchResults.length > 0}
-      <h3>{searchResults.length}件の結果を表示</h3>
+      <p class='ステータス'>{searchResults.length}件の結果を表示</p>
       <ul class="results-list">
         {#each searchResults as result}
           <li class="result-item">
@@ -180,9 +180,8 @@
         {/each}
       </ul>
     {:else if query && !loading}
-      <p class="no-results">"{query}" に一致する結果は見つかりませんでした。</p>
-    {:else}
-      {/if}
+      <p class="ステータス">結果が見つかりませんでした。</p>
+    {/if}
   </div>
 </section>
 
@@ -208,7 +207,7 @@
         background: transparent;
       }
     }
-    .searchOutput {
+    .search-output {
       .ステータス {
         text-align: center;
       }
