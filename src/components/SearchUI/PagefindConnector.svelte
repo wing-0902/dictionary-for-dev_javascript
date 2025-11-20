@@ -119,13 +119,7 @@
       if (query) {
         await fetchSearchResults(query);
       }
-      
-      // 4. Pagefindのハイライトスクリプトをインポート
-      await import(/* @vite-ignore */ `${PAGEFIND_OPTIONS.bundlePath}pagefind-highlight.js`);
-      // ハイライトオブジェクトを作成し、URLパラメータ 'q' を監視させる
-      // @ts-ignore
-      new PagefindHighlight({ highlightParam: PAGEFIND_OPTIONS.highlightParam });
-
+      // ハイライトはややこいので削除
     } catch (e) {
       console.error("Pagefind library or initialization failed.", e);
     }
@@ -169,7 +163,7 @@
         {#each searchResults as result}
           <hr />
           <li class="result-item">
-            <a href="{result.url}?{PAGEFIND_OPTIONS.highlightParam}={encodeURIComponent(query)}">
+            <a href="{result.url}">
               <h4>{result.meta.title || result.url}</h4>
               <p class="excerpt">{@html result.excerpt}</p>
             </a>
