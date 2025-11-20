@@ -1,15 +1,43 @@
-<script lang='ts'>
-  let isTitle: boolean = true;
+<script lang='js'>
+  let isTitle = true;
+  let searchWord = '';
 
-  function changeType(toWhich: boolean) {
+  import { onMount } from "svelte";
+
+  let pagefind = null;
+
+  onMount(() => {
+    if (isTitle) {
+      pagefind = import("https://tsdict.mdmbypass.wing.osaka/h1_only_search/pagefind.js");
+    } else {
+      pagefind = import('https://tsdict.mdmbypass.wing.osaka/content_search/pagefind.js');
+    }
+    pagefind.options({
+      bundlePath: "/content/"
+    });
+    pagefind.init();
+  });
+
+  function changeType(toWhich) {
+    const cacheTitle = isTitle;
     isTitle = toWhich;
-  }
 
-  import PagefindConnector from "./PagefindConnector.svelte";
-  import TitlePagefind from "./TitlePagefind.svelte";
+    if (isTitle != cacheTitle) {
+      pagefind.destroy();
+      if (isTitle) {
+        pagefind = import("https://tsdict.mdmbypass.wing.osaka/h1_only_search/pagefind.js");
+      } else {
+        pagefind = import("https://tsdict.mdmbypass.wing.osaka/content_search/pagefind.js");
+      }
+      pagefind.init();
+    }
+  }
 </script>
 
 <div class='root'>
+  <div class='searchText'>
+    <input type='text' bind:value={searchWord} />
+  </div>
   <div class='searchConfigRow'>
     <button
       on:click={() => changeType(true)}
@@ -24,18 +52,14 @@
       用例・全文
     </button>
   </div>
-  <div class='pagefindSlot'>
-    {#if (isTitle === true)}
-      <TitlePagefind />
-    {:else}
-      <PagefindConnector />
-    {/if}
-  </div>
 </div>
 
 <style lang='scss'>
   .root {
     padding: 4px;
+    .searchText {
+      
+    }
     .searchConfigRow {
       display: flex;
       height: 30px;
