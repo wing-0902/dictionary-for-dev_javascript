@@ -3,7 +3,7 @@
   
   /** 検索クエリを保持する変数 */
   let query = '';
-  /** 検索結果を保持する配列 (Pagefindの結果データを含む) */
+  /** 検索結果を保持する配列 */
   let searchResults: any[] = [];
   /** Pagefindコアライブラリのインスタンス */
   let pagefind: any;
@@ -17,7 +17,8 @@
     bundlePath: 'https://js.dictionary4.dev/content_search/',
     baseUrl: "/content/",
     pageSize: 8,
-    // highlightParam: "q" はハイライト機能がないため削除しました。
+    // highlightParamは検索結果のハイライト処理にカスタムで使用します
+    highlightParam: "q", 
   };
 
   /**
@@ -35,12 +36,10 @@
 
     loading = true;
     try {
-      // PagefindコアAPIで検索を実行
       const search = await pagefind.search(trimmedVal);
       
       // 結果をデシリアライズして表示用に整形
       if (search.results.length > 0) {
-        // search.resultsは非同期のdata()関数を持つオブジェクトの配列です。
         const data = await Promise.all(
           search.results.map((r: any) => r.data())
         );
@@ -87,9 +86,12 @@
     if (newQuery) {
       // ?q=... を設定
       newUrl.searchParams.set('q', newQuery);
+      // ハイライト用のパラメータも設定 (highlightParam: "q" と同じ値を使用)
+      newUrl.searchParams.set(PAGEFIND_OPTIONS.highlightParam, newQuery);
     } else {
-      // クエリが空ならパラメータを削除
+      // クエリが空なら両方のパラメータを削除
       newUrl.searchParams.delete('q');
+      newUrl.searchParams.delete(PAGEFIND_OPTIONS.highlightParam);
     }
     // ページをリロードせずにURLを更新
     window.history.pushState({}, '', newUrl.toString());
@@ -118,7 +120,11 @@
         await fetchSearchResults(query);
       }
       
-      // 4. ハイライト機能は削除したため、pagefind-highlight.jsのインポートと初期化は不要です。
+      // 4. Pagefindのハイライトスクリプトをインポート
+      await import(/* @vite-ignore */ `${PAGEFIND_OPTIONS.bundlePath}pagefind-highlight.js`);
+      // ハイライトオブジェクトを作成し、URLパラメータ 'q' を監視させる
+      // @ts-ignore
+      new PagefindHighlight({ highlightParam: PAGEFIND_OPTIONS.highlightParam });
 
     } catch (e) {
       console.error("Pagefind library or initialization failed.", e);
@@ -133,59 +139,34 @@
   });
 </script>
 
-<section class="root">
+<section class="custom-search-root">
   <div class="pgSearch">
     <input 
       type="search" 
       placeholder="サイト内検索..." 
-      bind:value={query}
+      value={query} 
       on:input={handleInput}
       aria-label="サイト内検索"
     />
-    {#if (query !== '')}
-      <button
-        aria-label="検索クエリを削除"
-        on:click={() => query = ''}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
-          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-        </svg>
-      </button>
-    {/if}
   </div>
 
-  <div class="searchOutput">
+  <div class="search-output">
     {#if loading}
-      <p class='ステータス'>検索中...</p>
+      <p>検索中...</p>
     {:else if query && searchResults.length > 0}
-      <p class='ステータス'>{searchResults.length}件の結果を表示</p>
+      <h3>{searchResults.length}件の結果を表示</h3>
       <ul class="results-list">
         {#each searchResults as result}
           <li class="result-item">
-            <a href="{result.url}">
+            <a href="{PAGEFIND_OPTIONS.baseUrl}{result.url}?{PAGEFIND_OPTIONS.highlightParam}={encodeURIComponent(query)}">
               <h4>{result.meta.title || result.url}</h4>
-              <p class="excerpt">{@html result.excerpt}</p>
+              <p class="excerpt">{result.excerpt}</p>
             </a>
-
-            {#if result.sub_results && result.sub_results.length > 0}
-              <ul class="sub-results-list">
-                {#each result.sub_results as subResult, index}
-                  {#if index > 0} 
-                    <li class="sub-result-item">
-                      <a href="{subResult.url}">
-                        <span class="sub-result-title">{subResult.title}</span>
-                        <span class="sub-result-excerpt"> — {@html subResult.excerpt}</span>
-                      </a>
-                    </li>
-                  {/if}
-                {/each}
-              </ul>
-            {/if}
           </li>
         {/each}
       </ul>
     {:else if query && !loading}
-      <p class="ステータス">結果が見つかりませんでした．</p>
+      <p class="no-results">"{query}" に一致する結果は見つかりませんでした。</p>
     {:else}
       {/if}
   </div>
