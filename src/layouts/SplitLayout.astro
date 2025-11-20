@@ -57,7 +57,7 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
     </header>
     <div class='contentSlot'>
       <section data-astro-transition-persist class="searchSlot">
-        <PagefindConnector client:load />
+        <PagefindConnector client:only="svelte" />
       </section>
       <section class="content">
         <slot />
