@@ -158,11 +158,25 @@
       <ul class="results-list">
         {#each searchResults as result}
           <li class="result-item">
-            <a href="{PAGEFIND_OPTIONS.baseUrl}{result.url}?{PAGEFIND_OPTIONS.highlightParam}={encodeURIComponent(query)}">
+            <a href="{result.url}?{PAGEFIND_OPTIONS.highlightParam}={encodeURIComponent(query)}">
               <h4>{result.meta.title || result.url}</h4>
-              <p class="excerpt">{result.excerpt}</p>
+              <p class="excerpt">{@html result.excerpt}</p>
             </a>
           </li>
+          {#if result.sub_results && result.sub_results.length > 0}
+              <ul class="sub-results-list">
+                {#each result.sub_results as subResult, index}
+                  {#if index > 0} 
+                    <li class="sub-result-item">
+                      <a href="{subResult.url}">
+                        <span class="sub-result-title">{subResult.title}</span>
+                        <span class="sub-result-excerpt"> — {@html subResult.excerpt}</span>
+                      </a>
+                    </li>
+                  {/if}
+                {/each}
+              </ul>
+            {/if}
         {/each}
       </ul>
     {:else if query && !loading}
