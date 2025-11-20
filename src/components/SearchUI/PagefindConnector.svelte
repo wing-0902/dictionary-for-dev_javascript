@@ -133,7 +133,7 @@
   });
 </script>
 
-<section class="custom-search-root">
+<section class="root">
   <div class="pgSearch">
     <input 
       type="search" 
@@ -182,66 +182,15 @@
 </section>
 
 <style lang="scss">
-  .custom-search-root {
-    margin-top: 11px;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  .pgSearch input {
+  .root {
     width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  .search-output {
-    margin-top: 15px;
-  }
-  .results-list {
-    list-style: none;
-    padding: 0;
-  }
-  .result-item {
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px dotted #eee;
-  }
-  .result-item a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-  .result-item h4 {
-    margin: 0 0 5px 0;
-    color: #007bff;
-  }
-  .excerpt {
-    font-size: 0.9em;
-    color: #555;
-  }
-  /* サブ結果のスタイル */
-  .sub-results-list {
-    list-style: none;
-    padding-left: 15px;
-    margin-top: 5px;
-    font-size: 0.9em;
-  }
-  .sub-result-item a {
-    color: #333;
-    padding: 2px 0;
-    &:hover {
-        text-decoration: underline;
+    .pgSearch {
+      input {
+        width: 100%;
+        font-family: var(--font-fira-code), var(--font-m-plus-1-code), monospace;
+        height: 40px;
+        font-size: 16px;
+      }
     }
-  }
-  .sub-result-title {
-    font-weight: bold;
-  }
-  .sub-result-excerpt {
-    color: #666;
-  }
-  .no-results {
-    color: #888;
   }
 </style>
