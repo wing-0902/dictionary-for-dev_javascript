@@ -1,59 +1,15 @@
-<script lang='js'>
-  let isTitle = true;
-  let searchWord = '';
+<script lang='ts'>
+  let isTitle: boolean = true;
 
-  import { onMount } from "svelte";
-
-  let pagefind = null;
-
-  let oneResult = null;
-
-  onMount(() => {
-    if (isTitle) {
-      pagefind = import("https://tsdict.mdmbypass.wing.osaka/h1_only_search/pagefind.js");
-    } else {
-      pagefind = import('https://tsdict.mdmbypass.wing.osaka/content_search/pagefind.js');
-    }
-    pagefind.options({
-      bundlePath: "/content/"
-    });
-    pagefind.init();
-  });
-
-  function changeType(toWhich) {
-    const cacheTitle = isTitle;
+  function changeType(toWhich: boolean) {
     isTitle = toWhich;
-
-    if (isTitle != cacheTitle) {
-      pagefind.destroy();
-      if (isTitle) {
-        pagefind = import("https://tsdict.mdmbypass.wing.osaka/h1_only_search/pagefind.js");
-      } else {
-        pagefind = import("https://tsdict.mdmbypass.wing.osaka/content_search/pagefind.js");
-      }
-      pagefind.init();
-    }
   }
 
-  function 検索を実行する(searchWord) {
-    if (searchWord != '') {
-      const search = pagefind.search(searchWord);
-      oneResult = search;
-    }
-  }
-
-  $: 検索を実行する(searchWord);
-
-  function 検索結果を表示(num) {
-    const oneResult = search.results[num].data();
-    return oneResult;
-  }
+  import PagefindConnector from "./PagefindConnector.svelte";
+  import TitlePagefind from "./TitlePagefind.svelte";
 </script>
 
 <div class='root'>
-  <div class='searchText'>
-    <input type='text' bind:value={searchWord} />
-  </div>
   <div class='searchConfigRow'>
     <button
       on:click={() => changeType(true)}
@@ -67,10 +23,12 @@
     >
       用例・全文
     </button>
-    {#if (oneResult != null)}
-      <p>{oneResult.meta.title}</p>
-    {/if}
-    </div>
+  </div>
+  {#if (isTitle === true)}
+    <TitlePagefind />
+  {:else}
+    <PagefindConnector />
+  {/if}
 </div>
 
 <style lang='scss'>
