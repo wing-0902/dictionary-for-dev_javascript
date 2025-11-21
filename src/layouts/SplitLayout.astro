@@ -5,7 +5,7 @@ import { Font } from "astro:assets";
 import '../styles/globals.scss';
 import '../styles/pagefindUi.scss';
 
-import PagefindConnector from '../components/SearchUI/PagefindConnector.svelte';
+import Sidebar from "../components/Sidebar.astro";
 
 const defaultTitle: string = 'JavaScript - Dictionary for Developers'
 
@@ -57,7 +57,7 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
     </header>
     <div class='contentSlot'>
       <section data-astro-transition-persist class="searchSlot">
-        <PagefindConnector client:load />
+        <Sidebar />
       </section>
       <section class="content">
         <slot />

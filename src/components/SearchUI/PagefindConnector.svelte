@@ -154,6 +154,8 @@
     {/if}
   </div>
 
+  <slot />
+
   <div class="search-output">
     {#if loading}
       <p class='ステータス'>検索中...</p>
