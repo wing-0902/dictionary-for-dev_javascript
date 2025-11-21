@@ -8,7 +8,7 @@
   $: SearchComponent =
     searchMode === '見出し' ? TitlePagefind :
     searchMode === '全文' ? PagefindConnector :
-    null;
+    TitlePagefind;
 </script>
 
 <div class='root'>
