@@ -226,10 +226,12 @@
         .項目 {
           margin: 0 17px;
           .項目リンク {
+            text-decoration: none;
             h2, p {
               font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
             }
             h2 {
+              text-decoration: underline;
               margin-top: 15px;
               line-height: 1;
             }
@@ -243,10 +245,14 @@
         .サブ結果 {
           .中身 {
             a {
+              text-decoration: none;
               .タイトル {
                 margin: 0;
                 line-height: 0.8;
                 margin-top: -6px;
+                &:hover {
+                  text-decoration: underline;
+                }
               }
             }
           }
