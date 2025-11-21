@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import SplitLayout from "../../layouts/SplitLayout.astro";
-import { Font } from "astro:assets";
 
 export async function getStaticPaths() {
   const bookEntries = await getCollection('dictionary');
