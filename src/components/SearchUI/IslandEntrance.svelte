@@ -14,12 +14,11 @@
 <div class='root'>
   {#if (SearchComponent !== null)}
     <svelte:component this={SearchComponent}>
-      <ModeConfig bind:searchMode = {searchMode} />
+      <div>
+        <ModeConfig bind:searchMode={searchMode} />
+      </div>
     </svelte:component>
   {:else}
     <h2>エラーが発生しました．</h2>
   {/if}
-  <PagefindConnector>
-    <ModeConfig bind:searchMode={searchMode} />
-  </PagefindConnector>
 </div>
