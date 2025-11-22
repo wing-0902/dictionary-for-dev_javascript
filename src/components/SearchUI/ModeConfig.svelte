@@ -71,6 +71,9 @@
       &:disabled {
         color: var(--themeColor);
       }
+      &:disabled {
+        border-color: var(--themeColor);
+      }
     }
   }
 </style>

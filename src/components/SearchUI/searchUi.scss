@@ -15,6 +15,11 @@
         border-radius: 7px 7px 0 0;
         border: solid var(--foreground);
         border-width: 1px 1px 0 1px;
+        &:focus {
+          outline: none;
+          border-color: var(--themeColor);
+          color: var(--themeColor);
+        }
 
       }
       button {
