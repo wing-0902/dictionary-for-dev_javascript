@@ -14,12 +14,14 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  showContent?: boolean;
 }
 
 const {
   title = defaultTitle,
   description = 'JavaScript・TypeScriptで使う構文やキーワードを，辞書形式でまとめたアプリです．',
-  noindex = false
+  noindex = false,
+  showContent = true,
 } = Astro.props
 
 let metaTitle: string = '';
@@ -57,10 +59,21 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
       </div>
     </header>
     <div class='contentSlot'>
-      <section data-astro-transition-persist class="searchSlot">
+      <section
+        data-astro-transition-persist
+        class={`
+          searchSlot
+          ${showContent === true ? 'hideSearchSlot' : 'showSearchSlot'}
+        `} 
+      >
         <Sidebar />
       </section>
-      <section class="content">
+      <section
+        class={`
+          content
+          ${showContent === true ? 'showContent' : 'hideContent'}
+        `}
+      >
         <div class="topbar">
           <Topbar />
         </div>
