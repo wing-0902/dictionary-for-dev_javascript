@@ -12,7 +12,9 @@ import ReturnLink from './Return.svelte';
 
 <div class="root">
   <div class="return">
-    <ReturnLink client:only="svelte" />
+    <div class="returnLink">
+      <ReturnLink client:only="svelte" />
+    </div>
   </div>
   <div class="title">
     <p>{title}</p>
@@ -30,22 +32,10 @@ import ReturnLink from './Return.svelte';
     display: flex;
     justify-content: space-between;
     .return {
-      display: flex;
-      align-items: center;
       height: 100%;
-      p {
+      .returnLink {
         display: none;
-        a {
-          text-decoration: none;
-          .戻る {
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-      @media (max-width: 830px) {
-        p {
+        @media (max-width: 830px) {
           display: inline;
         }
       }
