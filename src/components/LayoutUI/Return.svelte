@@ -14,13 +14,26 @@
   })
 </script>
 
-<div>
+<div class='root'>
   <p>
     <a
       href={addQuery("/", {
         'q': query,
         'm': mode,
       })}
-    >＜戻る</a>
+    >＜<span>戻る</span></a>
   </p>
 </div>
+
+<style lang="scss">
+  .root {
+    p {
+      a {
+        text-decoration: none;
+        span:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+</style>
