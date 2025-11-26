@@ -19,7 +19,6 @@
     bundlePath: 'https://js.dictionary4.dev/title_only_search/',
     baseUrl: "/content/",
     pageSize: 8,
-
   };
 
   /**
