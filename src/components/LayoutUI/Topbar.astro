@@ -3,7 +3,12 @@
 ---
 
 <div class="root">
+  <div class="return">
+    <a href="/">＜戻る</a>
+  </div>
+  <div>
 
+  </div>
 </div>
 
 <style lang="scss">
@@ -11,5 +16,17 @@
     height: 33px;
     border: 0 solid var(--foreground);
     border-bottom-width: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    .return {
+      a {
+        display: none;
+      }
+      @media (max-width: 830px) {
+        a {
+          display: inline;
+        }
+      }
+    }
   }
 </style>
