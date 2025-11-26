@@ -8,7 +8,7 @@
   onMount(async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const initialQuery = urlParams.get('q') ?? '';
-    const initialMode = urlParams.get('m') ?? '';
+    const initialMode = urlParams.get('m') ?? '見出し';
     query = initialQuery;
     mode = initialMode;
   })
