@@ -4,6 +4,7 @@ import { Font } from "astro:assets";
 
 import '../styles/globals.scss';
 
+import HeaderContent from "../components/LayoutUI/HeaderContent.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Topbar from "../components/LayoutUI/Topbar.astro";
 import Underbar from '../components/LayoutUI/Underbar.astro';
@@ -57,8 +58,7 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
   </head>
   <body>
     <header>
-      <div>
-      </div>
+      <HeaderContent />
     </header>
     <div class='contentSlot'>
       <section

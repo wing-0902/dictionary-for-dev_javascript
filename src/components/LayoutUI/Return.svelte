@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import { addQuery } from "../SearchUI/addQuery.mts";
 
+  import ArrowBack from "../Icons/ArrowBack.svg.svelte";
+
   let query: string = '';
   let mode: string = '';
 
@@ -21,7 +23,10 @@
         'q': query,
         'm': mode,
       })}
-    >＜<span>戻る</span></a>
+    >
+      <ArrowBack />
+      <span>戻る</span>
+    </a>
   </p>
 </div>
 
@@ -32,6 +37,8 @@
     align-items: center;
     p {
       a {
+        display: flex;
+        align-items: center;
         text-decoration: none;
         span:hover {
           text-decoration: underline;
