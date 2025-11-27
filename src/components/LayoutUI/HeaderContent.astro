@@ -8,9 +8,11 @@ import List from "../Icons/List.svg.astro";
   <div class="nav">
     <a>
       <List />
+      <span>一覧</span>
     </a>
     <a href="/">
       <Search />
+      <span>検索</span>
     </a>
   </div>
   <div class="clickHere">
@@ -23,9 +25,26 @@ import List from "../Icons/List.svg.astro";
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 100%;
     .dummy {}
-    .nav {}
+    .nav {
+      display: flex;
+      a {
+        padding-right: 8px;
+        padding-left: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--foreground);
+        text-decoration: none;
+        span {
+          @media (max-width: 830px) {
+            display: none;
+          }
+        }
+      }
+    }
     .clickHere {}
   }
 </style>
