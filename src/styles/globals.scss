@@ -1,6 +1,17 @@
 :root {
-  --foreground: rgb(0, 0, 0);
+  --foreground: white;
   --borderColor: rgb(97, 97, 97);
   --themeColor: #3178C6;
+  --codeBack: #282A36;
+
   font-family: var(--font-zen-kaku-gothic-new);
+  background-color: #16171d;
+  color: var(--foreground);
+}
+
+a {
+  color: var(--themeColor);
+  &:hover {
+    filter: brightness(80%);
+  }
 }

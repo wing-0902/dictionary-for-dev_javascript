@@ -6,6 +6,8 @@
       --side-margin: 7px;
       margin: 0 var(--side-margin);
       input {
+        background: transparent;
+        color: var(--foreground);
         margin-top: 2px;
         width: 100%;
         font-family: var(--font-fira-code), var(--font-m-plus-1-code), monospace;
@@ -21,7 +23,6 @@
           border-color: var(--themeColor);
           color: var(--themeColor);
         }
-
       }
       button {
         position: absolute;
@@ -30,6 +31,7 @@
         border: none;
         height: 40px;
         background: transparent;
+        color: var(--foreground);
       }
     }
     .search-output {

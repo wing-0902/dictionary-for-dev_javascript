@@ -60,6 +60,7 @@
       height: 28px;
       border: solid var(--foreground);
       border-width: 1px 0.5px;
+      background: transparent;
       &:first-child {
         border-radius: 0 0 0 7px;
         border-left-width: 1px !important;
@@ -70,8 +71,6 @@
       }
       &:disabled {
         color: var(--themeColor);
-      }
-      &:disabled {
         border-color: var(--themeColor);
       }
     }
