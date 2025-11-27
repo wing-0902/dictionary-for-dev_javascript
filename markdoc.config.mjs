@@ -1,4 +1,5 @@
 import { defineMarkdocConfig, component } from '@astrojs/markdoc/config';
+import shiki from '@astrojs/markdoc/shiki';
 
 export default defineMarkdocConfig({
   tags: {
@@ -10,4 +11,11 @@ export default defineMarkdocConfig({
       },
     },
   },
+  extends: [
+    shiki({
+      theme: 'github-dark',
+      wrap: true,
+      langs: [],
+    }),
+  ],
 });

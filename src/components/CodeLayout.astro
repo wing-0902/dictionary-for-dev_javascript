@@ -11,6 +11,7 @@ const { title = '' } = Astro.props;
     <div class="tab">
       <p>{title}</p>
     </div>
+    <div class="右"></div>
   </div>
   <div class="children">
     <slot />
@@ -22,8 +23,11 @@ const { title = '' } = Astro.props;
     .header {
       .tab {
         p {
-
+          font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
         }
+      }
+      .右 {
+
       }
     }
     .children {
