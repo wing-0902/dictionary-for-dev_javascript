@@ -10,7 +10,7 @@
   onMount(async () => {
     const urlParams = new URLSearchParams(window.location.search);
     query = urlParams.get('q') ?? '';
-    mode = urlParams.get('m') ?? '';
+    mode = urlParams.get('m') ?? '見出し';
   })
 </script>
 
