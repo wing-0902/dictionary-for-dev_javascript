@@ -44,9 +44,15 @@ importers:
       svelte:
         specifier: ^5.43.6
         version: 5.43.6
+      svelte-turnstile:
+        specifier: ^0.11.0
+        version: 0.11.0(svelte@5.43.6)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+      uuid:
+        specifier: ^13.0.0
+        version: 13.0.0
       vue:
         specifier: ^3.5.24
         version: 3.5.24(typescript@5.9.3)
@@ -2539,6 +2545,11 @@ packages:
     resolution: {integrity: sha512-SS+jx45GF1QjgEXQx4NJZV9ImqmO2NPz5FNsIHrsDjh2YsHnawpan7SNQ1o8NuhrbHZy9AZhIoCUiCeaW/C80g==}
     engines: {node: '>=18'}
 
+  svelte-turnstile@0.11.0:
+    resolution: {integrity: sha512-2LFklx9JVsR3fJ7e3fGG1HEAWWEqRq1WfNaVrKgZJ+pzfY2NColiH+wH0kK2yX3DrcGLiJ9vBeTyiLFWotKpLA==}
+    peerDependencies:
+      svelte: ^3.58.0 || ^4.0.0 || ^5.0.0
+
   svelte2tsx@0.7.45:
     resolution: {integrity: sha512-cSci+mYGygYBHIZLHlm/jYlEc1acjAHqaQaDFHdEBpUueM9kSTnPpvPtSl5VkJOU1qSJ7h1K+6F/LIUYiqC8VA==}
     peerDependencies:
@@ -2591,6 +2602,9 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  turnstile-types@1.2.3:
+    resolution: {integrity: sha512-EDjhDB9TDwda2JRbhzO/kButPio3JgrC3gXMVAMotxldybTCJQVMvPNJ89rcAiN9vIrCb2i1E+VNBCqB8wue0A==}
 
   type-fest@4.41.0:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
@@ -2737,6 +2751,10 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
+
+  uuid@13.0.0:
+    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
+    hasBin: true
 
   vfile-location@5.0.3:
     resolution: {integrity: sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==}
@@ -5937,6 +5955,11 @@ snapshots:
 
   supports-color@10.2.2: {}
 
+  svelte-turnstile@0.11.0(svelte@5.43.6):
+    dependencies:
+      svelte: 5.43.6
+      turnstile-types: 1.2.3
+
   svelte2tsx@0.7.45(svelte@5.43.6)(typescript@5.9.3):
     dependencies:
       dedent-js: 1.0.1
@@ -5996,6 +6019,8 @@ snapshots:
       typescript: 5.9.3
 
   tslib@2.8.1: {}
+
+  turnstile-types@1.2.3: {}
 
   type-fest@4.41.0: {}
 
@@ -6107,6 +6132,8 @@ snapshots:
       browserslist: 4.28.0
       escalade: 3.2.0
       picocolors: 1.1.1
+
+  uuid@13.0.0: {}
 
   vfile-location@5.0.3:
     dependencies:

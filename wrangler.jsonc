@@ -1,6 +1,6 @@
 {
 	"main": "dist/_worker.js/index.js",
-	"name": "dictionary4.dev_typescript",
+	"name": "js-dictionary",
   "compatibility_date": "2025-11-28",
   "compatibility_flags": [
     "nodejs_compat",
@@ -12,5 +12,12 @@
 	},
 	"observability": {
     "enabled": true
-  }
+  },
+
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "fa3beb81d4044eb683f23e4f59c81622"
+    }
+  ]
 }
