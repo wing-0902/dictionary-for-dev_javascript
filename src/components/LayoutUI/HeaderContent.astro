@@ -1,6 +1,7 @@
 ---
 import Search from "../Icons/Search.svg.astro";
 import List from "../Icons/List.svg.astro";
+import ClickHere from "./ClickHere.vue";
 
 import QueryLink from '../QueryLink.svelte';
 
@@ -35,7 +36,7 @@ const {
     </QueryLink>
   </div>
   <div class="clickHere">
-
+    <ClickHere client:load />
   </div>
 </div>
 
