@@ -6,18 +6,18 @@
     --side-margin: 7px;
     margin: 0 var(--side-margin);
     input {
-      background: transparent;
+      background: var(--codeBack);
       color: var(--foreground);
       margin-top: 2px;
+      margin-bottom: 2px;
       width: 100%;
       font-family: var(--font-fira-code), var(--font-m-plus-1-code), monospace;
       height: 40px;
       font-size: 16px;
       display: flex;
       align-items: center;
-      border-radius: 7px 7px 0 0;
-      border: solid var(--foreground);
-      border-width: 1px 1px 0 1px;
+      border-radius: 10px;
+      border: none;
       &:focus {
         outline: none;
         border-color: var(--themeColor);

@@ -58,20 +58,21 @@
       font-size: 14px;
       margin: 0;
       height: 28px;
-      border: solid var(--foreground);
+      border: solid var(--themeColor);
       border-width: 1px 0.5px;
       background: transparent;
       &:first-child {
-        border-radius: 0 0 0 7px;
+        border-radius: 7px 0 0 7px;
         border-left-width: 1px !important;
       }
       &:last-child {
-        border-radius: 0 0 7px 0;
+        border-radius: 0 7px 7px 0;
         border-right-width: 1px !important;
       }
       &:disabled {
-        color: var(--themeColor);
-        border-color: var(--themeColor);
+        color: var(--background);
+        font-weight: 700;
+        background-color: var(--themeColor);
       }
     }
   }
