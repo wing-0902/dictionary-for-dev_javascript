@@ -12,6 +12,7 @@
 
   const linkHref =
     href === '検索' ? "/" :
+    href === 'ライセンス' ? "/license/" :
     "/";
   
   onMount(async () => {
@@ -39,9 +40,12 @@
 <style lang="scss">
   .root {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     p {
+      margin: 0;
+      padding: 0;
       a {
         display: flex;
         align-items: center;
