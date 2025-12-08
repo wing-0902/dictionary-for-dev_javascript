@@ -13,6 +13,7 @@ const licenseEntries = Object.entries(licenseData);
       licenseEntries.map(([pkgName, pkgInfo]) => (
         <li>
           <h3>{pkgName}</h3>
+          <span>ライセンス：{pkgInfo.licenses}</span>
         </li>
       ))
     }
