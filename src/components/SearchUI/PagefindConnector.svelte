@@ -128,6 +128,8 @@
       clearTimeout(debounceTimer);
     }
   });
+
+  import {結果なし, 検索中, 表示中} from './message.mts';
 </script>
 
 <section class="root">
@@ -155,9 +157,9 @@
 
   <div class="search-output">
     {#if loading}
-      <p class='ステータス'>検索中...</p>
+      <p class='ステータス'>{検索中}</p>
     {:else if query && searchResults.length > 0}
-      <p class='ステータス'>{searchResults.length}件の結果を表示</p>
+      <p class='ステータス'>{searchResults.length}{表示中}</p>
       <ul class="結果一覧">
         {#each searchResults as result}
           <hr />
@@ -196,7 +198,7 @@
         <div class='spacer'></div>
       </ul>
     {:else if query && !loading}
-      <p class="ステータス">結果が見つかりませんでした。</p>
+      <p class="ステータス">{結果なし}</p>
     {/if}
   </div>
 </section>
