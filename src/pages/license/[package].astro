@@ -81,7 +81,7 @@ const nameOnly = packageName.split('@').slice(0, -1).join('@');
 
 <style lang='scss'>
   .root {
-    width: calc(100vw - var(--searchWidth));
+    width: calc(100vw - var(--searchWidth) - 20px);
     margin: auto 10px;
     box-sizing: border-box;
     h1 {
@@ -94,7 +94,7 @@ const nameOnly = packageName.split('@').slice(0, -1).join('@');
         width: 100%;
         code {
           width: 100%;
-          overflow-x: unset;
+          overflow-x: scroll;
         }
       }
     }
