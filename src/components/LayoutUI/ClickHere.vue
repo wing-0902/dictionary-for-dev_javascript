@@ -31,6 +31,11 @@
       <a>URLスキームをコピー</a>
     </div>
   </div>
+  <div
+    @click='changeStatus'
+    class='back'
+    v-if="!hidden">
+  </div>
 </template>
 
 <style scoped lang='scss'>
@@ -71,5 +76,14 @@
         text-decoration: none;
       }
     }
+  }
+  .back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: transparent;
+    width: 100vw;
+    height: 100dvh;
+    z-index: 800;
   }
 </style>
