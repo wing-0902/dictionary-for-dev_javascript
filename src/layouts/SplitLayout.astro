@@ -19,6 +19,7 @@ interface Props {
   showContent?: boolean;
   fullScreen?: boolean;
   header?: string;
+  leftComponent: string;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   showContent = true,
   fullScreen = false,
   header = '検索',
+  leftComponent = '検索'
 } = Astro.props
 
 let metaTitle: string = '';
@@ -72,7 +74,10 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
           ${fullScreen === true ? 'strictlyHidden' : ''}
         `} 
       >
-        <Sidebar data-astro-transition-persist />
+        <Sidebar
+          data-astro-transition-persist
+          content={leftComponent}
+          />
       </section>
       <section
         class={`

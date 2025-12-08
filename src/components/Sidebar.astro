@@ -4,9 +4,33 @@ import SearchIslandEntrance from './SearchUI/IslandEntrance.svelte';
 import { getCollection } from 'astro:content';
 
 const dictEntries = await getCollection('dictionary');
+
+interface Props {
+  content?: string;
+}
+
+const {
+  content = '検索'
+} = Astro.props;
 ---
 
-<SearchIslandEntrance
-  client:only="svelte"
-  allList={dictEntries}
-/>
+<div>
+  {(() => {
+    if (content === 'ライセンス') {
+      return (
+        <>
+          <p>ライセンス</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <SearchIslandEntrance
+            client:only="svelte"
+            allList={dictEntries}
+          />
+        </>
+      );
+    }
+  })()}
+</div>
