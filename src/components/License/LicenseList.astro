@@ -1,8 +1,13 @@
 ---
 import licenseData from '../../data/license-data.json';
 
+import { packageTitle } from '../../config.mts';
+
 const packagesCounter = Object.keys(licenseData).length;
-const licenseEntries = Object.entries(licenseData);
+const rawEntries = Object.entries(licenseData);
+const licenseEntries = rawEntries.filter(
+  ([pkgName]) => pkgName.split('@').slice(0, -1).join('@') !== packageTitle
+);
 ---
 
 <section>

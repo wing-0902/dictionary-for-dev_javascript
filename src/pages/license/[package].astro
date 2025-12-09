@@ -2,11 +2,15 @@
 import SplitLayout from '../../layouts/SplitLayout.astro';
 import licenseData from '../../data/license-data.json';
 import type { licenseInfo } from '../../types/licenseInfo.mts';
+import { packageTitle } from '../../config.mts';
 
 import fs from 'fs';
 
 export async function getStaticPaths () {
-  const licenseEntries = Object.entries(licenseData) as [string, licenseInfo][];
+  const rawEntries = Object.entries(licenseData) as [string, licenseInfo][];
+  const licenseEntries = rawEntries.filter(
+    ([pkgName]) => pkgName.split('@').slice(0, -1).join('@') !== packageTitle
+  );
   return licenseEntries.map(([pkgName, pkgInfo]) => {
     let licenseContent = 'ライセンスファイルを取得できませんでした．'
 
