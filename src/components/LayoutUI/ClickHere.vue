@@ -41,8 +41,8 @@
     :class="{ hidden: hidden }"
     class='menuSlot'>
     <div class='rowGr'>
-      <a>このアプリについて</a>
-      <a>コンテンツについて</a>
+      <a href='/license/app/'>このアプリについて</a>
+      <a href="/license/contents/">コンテンツについて</a>
       <a href='/license/'>その他のライセンス</a>
     </div>
     <div class='rowGr'>
