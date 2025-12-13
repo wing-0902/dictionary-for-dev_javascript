@@ -20,7 +20,7 @@ export default defineConfig({
     sitemap(),
     markdoc(),
     alpinejs({
-      entrypoint: '/src/entrypoint.mts',
+      entrypoint: '/src/entrypoint',
     })
   ],
   experimental: {

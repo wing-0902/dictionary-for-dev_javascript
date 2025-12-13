@@ -19,7 +19,7 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
     data-license-entries={licenseEntriesJson}
     class="alpinejs-slot"
     x-data="{
-      search: '',
+      search: $persist(''),
 
       licenseItems: JSON.parse($el.dataset.licenseEntries), 
 
