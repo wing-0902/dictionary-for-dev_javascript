@@ -13,7 +13,7 @@
     "url": "https://wing.osaka/"
   },
   "scripts": {
-    "license:generate": "license-checker --json --out src/data/license-data.json",
+    "license:generate": "license-checker --json --production --out src/data/license-data.json",
     "dev": "pnpm license:generate && astro dev",
     "build": "pnpm license:generate && astro build",
     "pagefind:full": "pagefind --site dist/content --output-path dist/content_search",
@@ -33,9 +33,9 @@
     "@astrojs/svelte": "^7.2.2",
     "@astrojs/vue": "^5.1.3",
     "@shikijs/transformers": "^3.19.0",
-    "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.2",
     "astro": "^5.16.0",
+    "license-checker": "^25.0.1",
     "pagefind": "^1.4.0",
     "rehype-pretty-code": "^0.14.1",
     "sass": "^1.94.0",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20251209.0",
-    "@types/alpinejs__persist": "^3.13.4",
-    "license-checker": "^25.0.1"
+    "@types/alpinejs": "^3.13.11",
+    "@types/alpinejs__persist": "^3.13.4"
   }
 }
