@@ -61,8 +61,7 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
       input {
         background: var(--codeBack);
         color: var(--foreground);
-        margin-top: 2px;
-        margin-bottom: 2px;
+        margin: 2px 5px;
         width: 100%;
         font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
         height: 40px;
@@ -74,6 +73,35 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
         &:focus {
           outline: none;
           color: var(--themeColor);
+        }
+      }
+      p {
+        font-size: 15px;
+        text-align: center;
+      }
+      ul {
+        li {
+          a {
+            text-decoration: none;
+            h3 {
+              font-size: 16px;
+              margin-bottom: 0;
+              filter: brightness(120%);
+            }
+            h3, span {
+              font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
+            }
+            span {
+              font-size: 15px;
+              filter: brightness(120%);
+            }
+            &:hover {
+              h3 {
+                text-decoration: underline;
+                filter: brightness(100%);
+              }
+            }
+          }
         }
       }
     }
