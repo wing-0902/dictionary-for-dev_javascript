@@ -37,7 +37,21 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
       }
     }"
   >
-    <input x-model='search' placeholder='検索...' />
+    <div class="alpineSearch">
+      <input x-model='search' placeholder='検索...' />
+      <template
+        x-if="search !== ''"
+      >
+        <button
+          aria-label="検索クエリを削除"
+          @click="search = ''"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+          </svg>
+        </button>
+      </template>
+    </div>
     <p><span x-text="filteredItems.length"></span>個のライセンスを表示中</p>
     <ul>
       <template x-for="item in filteredItems" :key="item[0]">
