@@ -61,6 +61,7 @@
       border: solid var(--themeColor);
       border-width: 1px 0.5px;
       background: var(--codeBack);
+      color: var(--foreground);
       &:first-child {
         border-radius: 7px 0 0 7px;
         border-left-width: 1px !important;
