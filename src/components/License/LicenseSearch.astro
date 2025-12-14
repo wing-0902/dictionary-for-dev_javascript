@@ -51,7 +51,7 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
     }"
   >
     <div class="alpineSearch">
-      <input x-model='search' placeholder='検索...' />
+      <input x-model.debounce.250ms='search' placeholder='入力して検索…' />
       <template
         x-if="search != ''"
       >
