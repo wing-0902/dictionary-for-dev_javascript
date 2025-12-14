@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { formDataToObject } from 'astro:actions';
-
   // インポート
   import Required from './Required.svelte';
   import Star from './Star.svelte';
@@ -23,7 +21,7 @@
     &&
     rate <= 5
     &&
-    email === ''
+    email === '' || isValidEmail(email)
 
   async function handleSubmit(event: Event) {
     event?.preventDefault();
@@ -76,9 +74,6 @@
 </script>
 
 <div>
-  <p>{email}</p>
-  <p>{rate}</p>
-  <p>{isValid}</p>
   <form on:submit={handleSubmit}>
     <fieldset>
       <legend>あなたについて</legend>
