@@ -14,7 +14,11 @@
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     
     return pattern.test(email);
-}
+  }
+
+  $: errorMsgAboutEmail = 
+    email === '' || isValidEmail(email) ? '　'
+    : 'メールアドレスの形式にしてください．'
 
   $: isValid = 
     rate >= 1
@@ -78,13 +82,14 @@
     <fieldset>
       <legend>あなたについて</legend>
       <div class='spacer'>
-        <label for='name'>お名前</label>
+        <label for='name'>お名前</label><br/>
         <input name='name' placeholder='ニックネームもOKです．' type='text' id='name' bind:value={username} />
       </div>
       <br />
       <div class='spacer'>
-        <label for='email'>メールアドレス</label>
-        <input name='email' placeholder='contact@wave.graphics' type='text' id='email' bind:value={email} />
+        <label for='email'>メールアドレス</label><br/>
+        <input name='email' placeholder='your@dictionary4.dev' type='text' id='email' bind:value={email} />
+        <p>{errorMsgAboutEmail}</p>
       </div>
     </fieldset>
     <fieldset>
@@ -116,7 +121,7 @@
     </fieldset>
     <Turnstile siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
     <div class='submitBtnBox'>
-      <button type='submit'>
+      <button type='submit' disabled={!isValid}>
         送信
       </button>
     </div>
