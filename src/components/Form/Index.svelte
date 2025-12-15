@@ -77,6 +77,11 @@
       const result = await response.json();
 
       if (response.ok) {
+        const sessionToDel = ['username_form', 'email_form', 'comment_form', 'rate_form'];
+        for (let i of sessionToDel) {
+          sessionStorage.removeItem(i);
+        }
+
         alert(result.message);
       } else {
         alert(`送信失敗：${result.error}`);
