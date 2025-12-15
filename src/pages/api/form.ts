@@ -33,8 +33,8 @@ export const OPTIONS: APIRoute = () => {
   });
 };
 
-export const POST: APIRoute = async ({ context }) => {
-  const { request, env } = context as { request: Request; env: RuntimeEnv };
+export const POST: APIRoute = async ({ request, env }) => {
+  const typedEnv = env as RuntimeEnv;
 
   try {
     // リクエストボディからformDataを取得
@@ -75,22 +75,47 @@ export const POST: APIRoute = async ({ context }) => {
     if ( !turnstileToken ) {
       errors.captcha = 'Turnstileトークンがありません'
     }
+    // Turnstile検証
     if (!errors.captcha) {
-      const TURNSTILE_SECRET_KEY = env.TURNSTILE_SECRET_KEY;
+      const TURNSTILE_SECRET_KEY = typedEnv.TURNSTILE_SECRET_KEY;
+      const turnstileVerificationUrl = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+      const turnstileResponse = await fetch(turnstileVerificationUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}`,
+      });
+      const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
+      if (!verificationResult.success) {
+        console.error('Turnstile検証失敗:', verificationResult['error-codes']);
+        errors.turnstile = '不正な操作の可能性があります。ページを再読み込みして再度お試しください。';
+      }
     }
     if (Object.keys(errors).length > 0) {
-    // 400 Bad Request ステータスでエラー情報をクライアントに返す
+      // 400 Bad Request ステータスでエラー情報をクライアントに返す
+      return new Response(
+        JSON.stringify({
+          message: '入力内容にエラーがあります。',
+          errors: errors, // エラーオブジェクトをクライアントに返します
+        }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
     return new Response(
-      JSON.stringify({
-        message: '入力内容にエラーがあります。',
-        errors: errors, // エラーオブジェクトをクライアントに返します
-      }),
-      {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      }
+      JSON.stringify({ message: 'フォームの送信が成功しました。' }),
+      { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
     );
-  }
+  } catch (error) {
+    console.error('API処理エラー:', error);
+    return new Response(
+      JSON.stringify({ message: 'サーバー側で予期せぬエラーが発生しました。' }),
+      { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+    );
   }
 };
 
