@@ -78,12 +78,12 @@
       <legend>あなたについて</legend>
       <div class='spacer'>
         <label for='name'>お名前</label><br/>
-        <input name='name' placeholder='ニックネームもOKです．' type='text' id='name' bind:value={username} class='usrnm' />
+        <input name='name' placeholder='ニックネームもOKです．' type='text' id='name' bind:value={username} class='usrnm formTextSlot' />
       </div>
       <br />
       <div class='spacer'><br/>
         <label for='email'>メールアドレス</label>
-        <input name='email' placeholder='your@dictionary4.dev' type='text' id='email' bind:value={email} class='email' class:invalidEmail={email !== '' && !isValidEmail(email)} />
+        <input name='email' placeholder='your@dictionary4.dev' type='text' id='email' bind:value={email} class='email formTextSlot' class:error={email !== '' && !isValidEmail(email)} />
       </div>
       <p class='warn'>{errorMsgAboutEmail}</p>
     </fieldset>
@@ -112,7 +112,7 @@
       </label>
       <br /><br />
       <label for='comment'>編集部へのメッセージ，ご意見など，ご自由にお書きください．</label><br />
-      <textarea placeholder='ここにコメントを入力' id='comment' name='comment' bind:value={comment}></textarea>
+      <textarea placeholder='ここにコメントを入力' id='comment' name='comment' bind:value={comment} class='formTextSlot'></textarea>
     </fieldset>
     <Turnstile siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
     <div class='submitBtnBox'>
@@ -136,30 +136,13 @@
           align-items: last baseline;
           overflow-x: wrap;
           input {
-            font-size: 19px;
             width: 100%;
             box-sizing: border-box;
             min-width: 280px;
             margin: 0;
-            border: 1px solid transparent;
-            border-bottom-color: var(--foreground);
-            background: var(--codeBack);
             height: 40px;
-            color: var(--foreground);
-            border-radius: 10px;
-            &:focus {
-              outline: none;
-              color: var(--themeColor);
-              border-bottom-color: var(--themeColor);
-            }
-            &.usrnm {
-              font-family: var(--zen-maru-gothic);
-            }
             &.email {
               font-family: var(--font-fira-code), monospace;
-            }
-            &.invalidEmail {
-              border-bottom-color: red;
             }
           }
         }
@@ -177,7 +160,6 @@
         }
         textarea {
           width: 100%;
-          font-family: var(--font-zen-maru-gothic);
           box-sizing: border-box;
           font-size: 19px;
           height: 100px;

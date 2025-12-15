@@ -25,5 +25,18 @@ code {
 }
 
 .formTextSlot {
-  
+  font-size: 19px;
+  border: 1px solid transparent;
+  border-radius: 10px 10px 0 0;
+  border-bottom-color: var(--foreground);
+  background: var(--codeBack);
+  font-family: var(--font-zen-maru-gothic);
+  &:focus {
+    outline: none;
+    color: var(--themeColor);
+    border-bottom-color: var(--themeColor);
+  }
+  &.error {
+    border-bottom-color: red;
+  }
 }
