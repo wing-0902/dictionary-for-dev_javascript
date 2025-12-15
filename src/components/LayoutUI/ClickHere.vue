@@ -46,6 +46,9 @@
       <a href='/license/'>その他のライセンス</a>
     </div>
     <div class='rowGr'>
+      <a href='/form/'>フィードバック</a>
+    </div>
+    <div class='rowGr'>
       <a @click='URLスキームをコピー'>URLスキームをコピー</a>
     </div>
   </div>
