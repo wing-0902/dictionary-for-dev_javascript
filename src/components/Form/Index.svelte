@@ -3,18 +3,13 @@
   import Required from './Required.svelte';
   import Star from './Star.svelte';
   import { Turnstile } from 'svelte-turnstile';
+  import {isValidEmail} from '../../data/emailValidation.mts';
 
   // フォーム内で使用する変数
   let username: string = '';
   let email: string = '';
   let comment: string = '';
   let rate: number = 0;
-
-  function isValidEmail(email: string) {
-    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    
-    return pattern.test(email);
-  }
 
   $: errorMsgAboutEmail = 
     email === '' || isValidEmail(email) ? '　'
