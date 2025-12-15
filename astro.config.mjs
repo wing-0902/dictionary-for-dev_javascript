@@ -39,6 +39,11 @@ export default defineConfig({
         name: 'Zen Kaku Gothic New',
         cssVariable: '--font-zen-kaku-gothic-new'
       },
+      {
+        provider: fontProviders.google(),
+        name: 'Zen Maru Gothic',
+        cssVariable: "--font-zen-maru-gothic",
+      },
     ]
   },
 

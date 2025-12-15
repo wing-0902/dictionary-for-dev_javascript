@@ -74,20 +74,20 @@
 
 <div class='root'>
   <form on:submit={handleSubmit}>
-    <fieldset>
+    <fieldset class='aboutYou'>
       <legend>あなたについて</legend>
       <div class='spacer'>
-        <label for='name'>お名前</label>
-        <input name='name' placeholder='ニックネームもOKです．' type='text' id='name' bind:value={username} />
+        <label for='name'>お名前</label><br/>
+        <input name='name' placeholder='ニックネームもOKです．' type='text' id='name' bind:value={username} class='usrnm' />
       </div>
       <br />
-      <div class='spacer'>
+      <div class='spacer'><br/>
         <label for='email'>メールアドレス</label>
         <input name='email' placeholder='your@dictionary4.dev' type='text' id='email' bind:value={email} class='email' class:invalidEmail={email !== '' && !isValidEmail(email)} />
       </div>
       <p class='warn'>{errorMsgAboutEmail}</p>
     </fieldset>
-    <fieldset>
+    <fieldset class='comment'>
       <legend>評価とコメント</legend>
       <p><Required />この記事を5段階で評価すると？</p>
       <label>
@@ -126,21 +126,19 @@
 <style lang="scss">
   .root {
     font-family: var(--font-zen-kaku-gothic-new);
+    box-sizing: border-box;
     form {
-      fieldset {
-        legend {
-
-        }
+      margin: auto 10px;
+      box-sizing: border-box;
+      .aboutYou {
+        max-width: 100%;
         .spacer {
-          display: flex;
-          justify-content: space-between;
           align-items: last baseline;
-          label {
-
-          }
+          overflow-x: wrap;
           input {
             font-size: 19px;
-            width: calc(100% - 160px);
+            width: 100%;
+            box-sizing: border-box;
             min-width: 280px;
             margin: 0;
             border: 1px solid transparent;
@@ -154,6 +152,9 @@
               color: var(--themeColor);
               border-bottom-color: var(--themeColor);
             }
+            &.usrnm {
+              font-family: var(--zen-maru-gothic);
+            }
             &.email {
               font-family: var(--font-fira-code), monospace;
             }
@@ -163,8 +164,25 @@
           }
         }
         .warn {
-          text-align: right;
           color: red;
+        }
+      }
+      .comment {
+        max-width: 100%;
+        label {
+          input {
+            appearance: none;
+            margin-left: -20px;
+          }
+        }
+        textarea {
+          width: 100%;
+          font-family: var(--font-zen-maru-gothic);
+          box-sizing: border-box;
+          font-size: 19px;
+          height: 100px;
+          resize: none;
+          background: var(--codeBack);
         }
       }
     }
