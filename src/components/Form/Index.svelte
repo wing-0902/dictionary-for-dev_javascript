@@ -16,7 +16,7 @@
   let hydrated = false;
 
   onMount(() => {
-    if ((sessionStorage.getItem('form_status') ?? '') === 'alreadySent' || "checked") {
+    if ((sessionStorage.getItem('form_status') ?? '') !== '') {
       for (const i of sessionToDel) {
         sessionStorage.removeItem(i);
       }
