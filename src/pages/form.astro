@@ -3,6 +3,10 @@ import SplitLayout from '../layouts/SplitLayout.astro';
 import FormUI from '../components/Form/Index.svelte';
 ---
 
-<SplitLayout>
+<SplitLayout
+  title='フィードバック'
+  fullScreen={true}
+  header='表示なし'
+>
   <FormUI client:load />
 </SplitLayout>
