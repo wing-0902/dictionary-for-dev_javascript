@@ -128,6 +128,24 @@
     font-family: var(--font-zen-kaku-gothic-new);
     box-sizing: border-box;
     form {
+      .submitBtnBox {
+        display: flex;
+        justify-content: center;
+        button[type='submit'] {
+          margin-top: 10px;
+          font-size: 17px;
+          height: 40px;
+          width: 100px;
+          border-radius: 10px;
+          background: var(--codeBack);
+          color: var(--themeColor);
+          border: 1px solid var(--themeColor);
+          &:disabled {
+            color: gray;
+            border-color: gray;
+          }
+        }
+      }
       margin: auto 10px;
       box-sizing: border-box;
       .aboutYou {
