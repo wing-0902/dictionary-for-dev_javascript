@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     // リクエストボディからformDataを取得
     const formData = await request.formData();
-
+    console.log(formData);
     // ユーザーの入力
     const name = formData.get('name');
     const rawEmail = formData.get('email');
@@ -49,6 +49,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const rawScore = formData.get('rate');
     const rawComment = formData.get('comment');
     const comment = (rawComment?.toString() || '').trim();
+    const rawHost = formData.get('host');
 
     // Turnstileトークン
     const rawTurnstileToken = formData.get('cf-turnstile-response');
@@ -59,6 +60,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // エラーがある場合
     if (email && isValidEmail(email)) {
       errors.email = 'メールアドレスが無効な形式です．'
+    }
+    if (!rawHost) {
+      errors.host = 'ホスト名がありません．'
     }
     if (comment && comment.length> 500) {
       errors.comment = 'コメントは500文字以内でお願いします．'
