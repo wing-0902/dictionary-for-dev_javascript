@@ -155,7 +155,8 @@
         label {
           input {
             appearance: none;
-            margin-left: -20px;
+            margin: auto 0;
+            padding: 0;
           }
         }
         textarea {
