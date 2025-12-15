@@ -26,8 +26,9 @@
     sessionStorage.setItem('username_form', username);
     sessionStorage.setItem('email_form', email);
     sessionStorage.setItem('comment_form', comment);
-    sessionStorage.setItem('rate', rate.toString());
+    sessionStorage.setItem('rate_form', rate.toString());
   }
+
   $: errorMsgAboutEmail = 
     email === '' || isValidEmail(email) ? '　'
     : 'メールアドレスの形式にしてください．'
