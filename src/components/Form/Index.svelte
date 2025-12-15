@@ -154,6 +154,7 @@
         max-width: 100%;
         label {
           input {
+            opacity: 0;
             appearance: none;
             margin: auto 0;
             padding: 0;
