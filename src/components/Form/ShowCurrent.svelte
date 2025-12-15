@@ -24,16 +24,16 @@
 
 <ul>
   <li>
-    <strong>お名前</strong>：{username}
+    <strong>お名前</strong><span>：{username}</span>
   </li>
   <li>
-    <strong>メール</strong>：{email}
+    <strong>メール</strong><span>：{email}</span>
   </li>
   <li>
-    <strong>評価</strong>：{rate}
+    <strong>評価</strong><span>：{rate}</span>
   </li>
   <li>
-    <strong>コメント</strong>：
+    <strong>コメント</strong>：<br/>
     {comment}
   </li>
 </ul>
@@ -41,8 +41,11 @@
 <style lang="scss">
   ul {
     font-family: var(--font-zen-maru-gothic);
-    strong {
-      font-family: var(--font-zen-kaku-gothic-new);
+    li {
+      overflow-x: wrap;
+      strong {
+        font-family: var(--font-zen-kaku-gothic-new);
+      }
     }
   }
 </style>
