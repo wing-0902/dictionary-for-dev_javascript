@@ -49,8 +49,6 @@
       return;
     }
 
-    formData.append('host', 'js.dictionary4.dev');
-
     try {
       // fetch APIを使ってサーバーにPOSTリクエストを送信
       const response = await fetch('/api/form', {
