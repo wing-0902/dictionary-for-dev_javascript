@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     request.headers.get('x-forwarded-for')?.split(',')[0].trim();
 
   const typedEnv = locals.runtime.env as RuntimeEnv;
-  console.log(typedEnv);
+  
   try {
     // リクエストボディからformDataを取得
     const formData = await request.formData();
