@@ -72,20 +72,20 @@
   }
 </script>
 
-<div>
+<div class='root'>
   <form on:submit={handleSubmit}>
     <fieldset>
       <legend>あなたについて</legend>
       <div class='spacer'>
-        <label for='name'>お名前</label><br/>
+        <label for='name'>お名前</label>
         <input name='name' placeholder='ニックネームもOKです．' type='text' id='name' bind:value={username} />
       </div>
       <br />
       <div class='spacer'>
-        <label for='email'>メールアドレス</label><br/>
-        <input name='email' placeholder='your@dictionary4.dev' type='text' id='email' bind:value={email} />
-        <p>{errorMsgAboutEmail}</p>
+        <label for='email'>メールアドレス</label>
+        <input name='email' placeholder='your@dictionary4.dev' type='text' id='email' bind:value={email} class='email' class:invalidEmail={email !== '' && !isValidEmail(email)} />
       </div>
+      <p class='warn'>{errorMsgAboutEmail}</p>
     </fieldset>
     <fieldset>
       <legend>評価とコメント</legend>
@@ -124,5 +124,49 @@
 </div>
 
 <style lang="scss">
+  .root {
+    font-family: var(--font-zen-kaku-gothic-new);
+    form {
+      fieldset {
+        legend {
 
+        }
+        .spacer {
+          display: flex;
+          justify-content: space-between;
+          align-items: last baseline;
+          label {
+
+          }
+          input {
+            font-size: 19px;
+            width: calc(100% - 160px);
+            min-width: 280px;
+            margin: 0;
+            border: 1px solid transparent;
+            border-bottom-color: var(--foreground);
+            background: var(--codeBack);
+            height: 40px;
+            color: var(--foreground);
+            border-radius: 10px;
+            &:focus {
+              outline: none;
+              color: var(--themeColor);
+              border-bottom-color: var(--themeColor);
+            }
+            &.email {
+              font-family: var(--font-fira-code), monospace;
+            }
+            &.invalidEmail {
+              border-bottom-color: red;
+            }
+          }
+        }
+        .warn {
+          text-align: right;
+          color: red;
+        }
+      }
+    }
+  }
 </style>
