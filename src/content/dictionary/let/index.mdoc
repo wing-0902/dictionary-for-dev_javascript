@@ -1,0 +1,20 @@
+---
+title: let
+品詞: 変数宣言
+jsInclude: true
+tsInclude: true
+---
+
+## 1. 変数を宣言
+
+{% code title="Config.svelte" %}
+```svelte
+<script>
+  let displayName = '太郎';
+</script>
+
+<div>
+  <input type="text" bind:value={displayName} />
+</div>
+```
+{% /code %}
