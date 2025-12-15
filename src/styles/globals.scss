@@ -31,6 +31,7 @@ code {
   border-bottom-color: var(--foreground);
   background: var(--codeBack);
   font-family: var(--font-zen-maru-gothic);
+  color: var(--foreground);
   &:focus {
     outline: none;
     color: var(--themeColor);
@@ -38,5 +39,6 @@ code {
   }
   &.error {
     border-bottom-color: red;
+    color: red;
   }
 }
