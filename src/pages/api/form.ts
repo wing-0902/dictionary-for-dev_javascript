@@ -35,7 +35,7 @@ export const OPTIONS: APIRoute = () => {
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const typedEnv = locals.runtime.env as RuntimeEnv;
-
+  console.log(typedEnv);
   try {
     // リクエストボディからformDataを取得
     const formData = await request.formData();
@@ -66,10 +66,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
       const score = Number(rawScore);
       if (isNaN(score)) {
         errors.score = "評価は数値で入力する必要があります"
-      } else {
-        if (!Number.isInteger(score)) {
-          errors.score = '評価は整数である必要があります。';
-        }
+      } else if (!Number.isInteger(score)) {
+        errors.score = '評価は整数である必要があります。'
+      } else if (score > 5 || score < 1) {
+        errors.score = '評価は1〜5の整数値である必要があります．'
       }
     }
     if ( !turnstileToken ) {
