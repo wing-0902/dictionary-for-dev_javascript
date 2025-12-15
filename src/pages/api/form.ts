@@ -34,6 +34,8 @@ export const OPTIONS: APIRoute = () => {
 };
 
 export const POST: APIRoute = async ({ request, locals }) => {
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  console.log(forwardedFor?.split(',')[0].trim());
   const typedEnv = locals.runtime.env as RuntimeEnv;
   console.log(typedEnv);
   try {
@@ -86,7 +88,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}`,
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${forwardedFor?.split(',')[0].trim()}`,
       });
       const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
       if (!verificationResult.success) {
