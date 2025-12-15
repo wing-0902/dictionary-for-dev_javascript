@@ -24,16 +24,25 @@
 
 <ul>
   <li>
-    お名前：{username}
+    <strong>お名前</strong>：{username}
   </li>
   <li>
-    メール：{email}
+    <strong>メール</strong>：{email}
   </li>
   <li>
-    評価：{rate}
+    <strong>評価</strong>：{rate}
   </li>
   <li>
     <strong>コメント</strong>：
     {comment}
   </li>
 </ul>
+
+<style lang="scss">
+  ul {
+    font-family: var(--font-zen-maru-gothic);
+    strong {
+      font-family: var(--font-zen-kaku-gothic-new);
+    }
+  }
+</style>
