@@ -3,14 +3,31 @@
   import Required from './Required.svelte';
   import Star from './Star.svelte';
   import { Turnstile } from 'svelte-turnstile';
-  import {isValidEmail} from '../../data/emailValidation.mts';
+  import { isValidEmail } from '../../data/emailValidation.mts';
+  import { onMount } from 'svelte'
 
   // フォーム内で使用する変数
-  let username: string = '';
-  let email: string = '';
-  let comment: string = '';
-  let rate: number = 0;
+  let username: string;
+  let email: string;
+  let comment: string;
+  let rate: number;
 
+  let hydrated = false;
+
+  onMount(() => {
+    username = sessionStorage.getItem('username_form') ?? '';
+    email = sessionStorage.getItem('email_form') ?? '';
+    comment = sessionStorage.getItem('comment_form') ?? '';
+    rate = Number(sessionStorage.getItem('rate_form')) ?? 0;
+    hydrated = true;
+  });
+
+  $: if (hydrated) {
+    sessionStorage.setItem('username_form', username);
+    sessionStorage.setItem('email_form', email);
+    sessionStorage.setItem('comment_form', comment);
+    sessionStorage.setItem('rate', rate.toString());
+  }
   $: errorMsgAboutEmail = 
     email === '' || isValidEmail(email) ? '　'
     : 'メールアドレスの形式にしてください．'
