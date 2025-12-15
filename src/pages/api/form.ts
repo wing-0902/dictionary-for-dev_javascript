@@ -33,8 +33,8 @@ export const OPTIONS: APIRoute = () => {
   });
 };
 
-export const POST: APIRoute = async ({ request, env }) => {
-  const typedEnv = env as RuntimeEnv;
+export const POST: APIRoute = async ({ request, locals }) => {
+  const typedEnv = locals.runtime.env as RuntimeEnv;
 
   try {
     // リクエストボディからformDataを取得
