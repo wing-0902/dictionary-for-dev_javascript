@@ -5,8 +5,6 @@ import type { APIRoute } from 'astro';
 import type { KVNamespace } from '@cloudflare/workers-types';
 import { isValidEmail } from '../../data/emailValidation.mts';
 
-const id = uuidv4();
-
 interface RuntimeEnv {
   SURVEY_ANSWERS: KVNamespace;
   TURNSTILE_SECRET_KEY: string;
@@ -36,8 +34,12 @@ export const OPTIONS: APIRoute = () => {
 };
 
 export const POST: APIRoute = async ({ request, locals }) => {
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  console.log(forwardedFor?.split(',')[0].trim());
+  const id = uuidv4();
+
+  const ip =
+    request.headers.get('cf-connecting-ip') ??
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim();
+
   const typedEnv = locals.runtime.env as RuntimeEnv;
   console.log(typedEnv);
   try {
@@ -51,8 +53,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const rawScore = formData.get('rate');
     const rawComment = formData.get('comment');
     const comment = (rawComment?.toString() || '').trim();
-    const rawHost = formData.get('host');
-    const host = (rawHost?.toString() || '').trim();
+
+    const host = request.headers.get('host') ?? 'unknown';
 
     // Turnstileトークン
     const rawTurnstileToken = formData.get('cf-turnstile-response');
@@ -61,11 +63,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const errors: Record<string, string> = {};
 
     // エラーがある場合
-    if (email && isValidEmail(email)) {
+    if (email && !isValidEmail(email)) {
       errors.email = 'メールアドレスが無効な形式です．'
     }
-    if (!rawHost) {
-      errors.host = 'ホスト名がありません．'
+    if (host === 'unknown') {
+      errors.host = 'ホスト名が不明です．'
     }
     if (comment && comment.length> 500) {
       errors.comment = 'コメントは500文字以内でお願いします．'
@@ -95,7 +97,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${forwardedFor?.split(',')[0].trim()}&idempotency_key=${id}`,
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${ip}&idempotency_key=${id}`,
       });
       const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
       if (!verificationResult.success) {
@@ -115,7 +117,23 @@ export const POST: APIRoute = async ({ request, locals }) => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
+    } else {
+      const data: SurveyData = {
+        host: request.headers.get('host') ?? 'unknown',
+        username: name?.toString() || undefined,
+        email: email || undefined,
+        rate: Number(rawScore),
+        comment: comment || undefined,
+        timestamp: Date.now(),
+      };
+
+      // KVに保存
+      await typedEnv.SURVEY_ANSWERS.put(
+        id,
+        JSON.stringify(data)
+      );
     }
+
     return new Response(
       JSON.stringify({ message: 'フォームの送信が成功しました。' }),
       { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
