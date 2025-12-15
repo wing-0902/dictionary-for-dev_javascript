@@ -47,6 +47,7 @@
     </div>
     <div class='rowGr'>
       <a href='/form/'>フィードバック</a>
+      <a href="/form/report/">バグ報告</a>
     </div>
     <div class='rowGr'>
       <a @click='URLスキームをコピー'>URLスキームをコピー</a>
