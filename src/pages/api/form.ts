@@ -49,7 +49,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const comment = (rawComment?.toString() || '').trim();
 
     // Turnstileトークン
-    const turnstileToken = formData.get('cf-turnstile-response');
+    const rawTurnstileToken = formData.get('cf-turnstile-response');
+    const turnstileToken = rawTurnstileToken?.toString();
 
     const errors: Record<string, string> = {};
 
