@@ -5,6 +5,7 @@
   import { Turnstile } from 'svelte-turnstile';
   import { isValidEmail } from '../../data/emailValidation.mts';
   import { onMount } from 'svelte'
+  import { sessionToDel } from "./formSessionStorage.mts"
 
   // フォーム内で使用する変数
   let username: string;
@@ -15,6 +16,13 @@
   let hydrated = false;
 
   onMount(() => {
+    if ((sessionStorage.getItem('form_status') ?? '') !== 'alreadySent') {
+      for (const i of sessionToDel) {
+        sessionStorage.removeItem(i);
+      }
+      sessionStorage.removeItem('form_status')
+    }
+
     username = sessionStorage.getItem('username_form') ?? '';
     email = sessionStorage.getItem('email_form') ?? '';
     comment = sessionStorage.getItem('comment_form') ?? '';
@@ -78,13 +86,12 @@
 
       if (response.ok) {
         hydrated = false;
-
-        const sessionToDel = ['username_form', 'email_form', 'comment_form', 'rate_form'];
+        sessionStorage.setItem('form_status', 'alreadySent')
         for (let i of sessionToDel) {
           sessionStorage.removeItem(i);
         }
 
-        alert(result.message);
+        window.location.href = '/form/success/'
       } else {
         alert(`送信失敗：${result.error}`);
       }

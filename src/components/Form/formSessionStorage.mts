@@ -1,0 +1,1 @@
+export const sessionToDel: string[] = ['username_form', 'email_form', 'comment_form', 'rate_form', 'form_status'];
