@@ -5,6 +5,8 @@ import type { APIRoute } from 'astro';
 import type { KVNamespace } from '@cloudflare/workers-types';
 import { isValidEmail } from '../../data/emailValidation.mts';
 
+const id = uuidv4();
+
 interface RuntimeEnv {
   SURVEY_ANSWERS: KVNamespace;
   TURNSTILE_SECRET_KEY: string;
@@ -51,7 +53,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const comment = (rawComment?.toString() || '').trim();
     const rawHost = formData.get('host');
     const host = (rawHost?.toString() || '').trim();
-    
+
     // Turnstileトークン
     const rawTurnstileToken = formData.get('cf-turnstile-response');
     const turnstileToken = rawTurnstileToken?.toString();
@@ -93,7 +95,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${forwardedFor?.split(',')[0].trim()}`,
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${forwardedFor?.split(',')[0].trim()}&idempotency_key=${id}`,
       });
       const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
       if (!verificationResult.success) {
