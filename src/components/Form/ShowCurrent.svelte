@@ -9,7 +9,12 @@
 
   onMount(() => {
     if ((sessionStorage.getItem('form_status') ?? '') !== 'alreadySent') {
-      window.location.href = '/form/'
+      if ((sessionStorage.getItem('form_status') ?? '') === 'checked' ) {
+        sessionStorage.removeItem('form_status');
+        window.location.href = '/'
+      } else {
+        window.location.href = '/form/'
+      }
     } else {
       username = sessionStorage.getItem('username_form') ?? '';
       email = sessionStorage.getItem("email_form") ?? '';
@@ -18,6 +23,7 @@
       for (const i of sessionToDel) {
         sessionStorage.removeItem(i);
       }
+      sessionStorage.setItem('form_status', 'checked');
     }
   })
 </script>
