@@ -87,9 +87,6 @@
       if (response.ok) {
         hydrated = false;
         sessionStorage.setItem('form_status', 'alreadySent')
-        for (let i of sessionToDel) {
-          sessionStorage.removeItem(i);
-        }
 
         window.location.href = '/form/success/'
       } else {

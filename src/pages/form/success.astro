@@ -1,5 +1,6 @@
 ---
 import SplitLayout from "../../layouts/SplitLayout.astro";
+import ShowCurrent from '../../components/Form/ShowCurrent.svelte';
 ---
 
 <SplitLayout
@@ -9,5 +10,7 @@ import SplitLayout from "../../layouts/SplitLayout.astro";
   header="表示なし"
 >
   <h1>フィードバックが送信されました</h1>
+  <p>以下の内容で承っております．</p>
+  <ShowCurrent client:load />
   <p>ご協力ありがとうございました．お客様の御意見は，今後の参考にさせていただきます．</p>
 </SplitLayout>
