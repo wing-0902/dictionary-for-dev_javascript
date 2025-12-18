@@ -26,6 +26,25 @@
       alert('この環境では利用できません．')
     }
   }
+
+  const appShareData = {
+    title: 'JavaScript - Dictionary for Dev',
+    text: 'JavaScriptのコードを辞書で検索しましょう．オリジナルの辞書も作れますよ．',
+    url: 'https://js.dictionary4.dev'
+  }
+
+  function shareThisApp() {
+    try {
+      if (navigator.share) {
+        navigator.share(appShareData);
+        console.log('共有完了');
+      } else {
+        alert('このブラウザでは使用できないメニューです');
+      }
+    } catch (err) {
+      alert('不明なエラー：', error);
+    }
+  }
 </script>
 
 <template>
@@ -50,6 +69,7 @@
       <a href="/form/report/">バグ報告</a>
     </div>
     <div class='rowGr'>
+      <a @click='shareThisApp'>このAppを共有</a>
       <a @click='URLスキームをコピー'>URLスキームをコピー</a>
     </div>
   </div>
