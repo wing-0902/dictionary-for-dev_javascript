@@ -97,7 +97,7 @@
       backdrop-filter: brightness(85%) blur(8px);
       transition: all 0.25s ease;
       &.isOpen {
-        top: 50%;
+        top: calc(150% - 300px);
       }
       .detailContent {
         display: flex;
