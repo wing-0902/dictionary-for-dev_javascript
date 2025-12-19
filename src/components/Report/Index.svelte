@@ -7,6 +7,8 @@
   import { reportToDel } from "$components/Form/formSessionStorage.mjs";
   import { isValidEmail } from "../../data/emailValidation.mts";
 
+  import { Turnstile } from "svelte-turnstile";
+
   // フォーム内で使用する変数
   let username: string;
   let email: string;
@@ -41,15 +43,14 @@
     : 'メールアドレスの形式にしてください．'
 
   $: isValid = 
-    email === '' || isValidEmail(email)
+    isValidEmail(email)
     &&
-    reportTitle
+    reportTitle !== ''
     &&
-    reportMsg
+    reportMsg !== ''
     &&
-    username
-    &&
-    email
+    username !== ''
+
 
   async function handleSubmit(event: Event) {
 
@@ -86,5 +87,11 @@
         <textarea name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg}></textarea>
       </div>
     </fieldset>
+    <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
+    <div class='submitBtnBox'>
+      <button type='submit' disabled={!isValid}>
+        送信
+      </button>
+    </div>
   </form>
 </div>
