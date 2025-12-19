@@ -42,6 +42,7 @@
     "svelte": "^5.43.6",
     "svelte-turnstile": "^0.11.0",
     "typescript": "^5.9.3",
+    "uqr": "^0.1.2",
     "uuid": "^13.0.0",
     "vue": "^3.5.24"
   },
