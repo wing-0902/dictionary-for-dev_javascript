@@ -1,6 +1,5 @@
 <script lang='ts'>
   import { renderSVG } from 'uqr';
-  import { onMount } from 'svelte';
 
   export let shareTitle: string;
   export let shareUrl: string;
@@ -104,7 +103,7 @@
         .slot {
           padding: 10px;
           &.qrSlot {
-            width: 120px;
+            width: 140px;
           }
           &.shareSlot {
             display: flex;
