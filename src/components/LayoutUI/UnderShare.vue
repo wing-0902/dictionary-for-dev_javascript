@@ -5,7 +5,6 @@
 
   const appShareData = {
     title: props.shareTitle,
-    text: props.shareTitle,
     url: props.shareUrl,
   }
 
