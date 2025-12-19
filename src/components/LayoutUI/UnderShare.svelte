@@ -108,13 +108,13 @@
   </div>
 
   {#if (open)}
-    <div
+    <button
       class='backgroundSlot'
       role='button'
       tabindex='0'
       aria-label="メニューを閉じる"
       on:click|preventDefault={handleClick}>
-    </div>
+    </button>
   {/if}
 </div>
 
@@ -213,6 +213,8 @@
     }
     .backgroundSlot {
       position: fixed;
+      opacity: 0;
+      border: none;
       width: 100vw;
       height: 100dvh;
       top: 0;
