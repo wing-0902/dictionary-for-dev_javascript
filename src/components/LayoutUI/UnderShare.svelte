@@ -76,7 +76,7 @@
     <Share />
   </button>
 
-  <div class='detail' class:isOpen={open}>
+  <div class='detail' class:isOpen={open} class:isClose={!open}>
     <button class='closeArrow' on:click={handleClick}>
       <GoDown />
     </button>
@@ -129,6 +129,7 @@
       color: var(--foreground);
     }
     .detail {
+      perspective: 500px;
       .closeArrow {
         width: 100%;
         display: flex;
@@ -157,6 +158,9 @@
       }
       &.isOpen {
         top: calc(150% - 300px);
+      }
+      &.isClose {
+        transform: rotateX(-60deg);
       }
       .detailContent {
         display: flex;
