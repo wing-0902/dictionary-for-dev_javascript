@@ -61,8 +61,29 @@
     <fieldset class='aboutYou'>
       <legend>あなたについて</legend>
       <div class='spacer'>
+        <Required />
         <label for='name'>お名前</label><br/>
         <input name='name' placeholder='お名前' type='text' id='name' bind:value={username} />
+      </div>
+      <br />
+      <div class='spacer'>
+        <Required />
+        <label for='email'>メールアドレス</label><br/>
+        <input name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} />
+      </div>
+      <p>{errorMsgAboutEmail}</p>
+    </fieldset>
+    <fieldset class='本題'>
+      <legend>レポート</legend>
+      <div class='spacer'>
+        <Required />
+        <label for='report_title'>タイトル</label>
+        <input name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} />
+      </div>
+      <div>
+        <Required />
+        <label for='report_message'>本文</label>
+        <textarea name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg}></textarea>
       </div>
     </fieldset>
   </form>
