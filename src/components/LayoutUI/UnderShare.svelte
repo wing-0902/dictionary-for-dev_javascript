@@ -59,7 +59,16 @@
   const coloredSvg = svgCode
     .replace(/fill="black"/g, 'fill="#ffffff"')
     .replace(/fill="white"/g, 'fill="#00000000"')
+
+  // キー
+  function handleKeydown(event: any) {
+    if (event.key === 'Escape') {
+      open = false;
+    }
+  }
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <div class='root'>
   <button on:click={handleClick}>
