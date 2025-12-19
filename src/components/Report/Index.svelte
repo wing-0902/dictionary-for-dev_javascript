@@ -91,7 +91,7 @@
     </fieldset>
     <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
     <label>
-      <input type='checkbox' bind:value={agreeOnPolicy} />
+      <input type='checkbox' bind:checked={agreeOnPolicy} />
       フォームの規約に同意する
     </label>
     <div class='submitBtnBox'>
