@@ -79,7 +79,7 @@
     <div class='detailContent'>
       <div class='slot qrSlot'>
         <h3>QRコード</h3>
-        <div bind:this={captureElement}>
+        <div bind:this={captureElement} class='qrSvgSlot'>
           {@html coloredSvg}
         </div>
       </div>
@@ -104,13 +104,13 @@
   </div>
 
   {#if (open)}
-    <a
+    <div
       class='backgroundSlot'
       role='button'
       tabindex='0'
       aria-label="メニューを閉じる"
       on:click|preventDefault={handleClick}>
-    </a>
+    </div>
   {/if}
 </div>
 
@@ -134,19 +134,47 @@
       border-radius: 10px;
       width: 600px;
       max-width: calc(100vw - 32px);
-      height: calc(100dvh - 90px);
+      height: 100dvh;
       z-index: 1200;
       backdrop-filter: brightness(85%) blur(8px);
       transition: all 0.25s ease;
+      @media (max-width: 400px) {
+        width: 100dvh;
+        max-width: 100vw;
+        margin: 0;
+        &.isOpen {
+          top: calc(150% - 300px) !important;
+        }
+      }
       &.isOpen {
         top: calc(150% - 300px);
       }
       .detailContent {
         display: flex;
+        @media (max-width: 400px) {
+          flex-direction: column;
+          .slot {
+            width: 100%;
+            h3 {
+              display: none;
+            }
+            &.qrSlot {
+              display: flex;
+              justify-content: center;
+              width: 100% !important;
+              .qrSvgSlot {
+                width: 80px;
+              }
+            }
+          }
+        }
         .slot {
           padding: 10px;
           &.qrSlot {
             width: 140px;
+            .qrSvgSlot {
+
+            }
           }
           &.shareSlot {
             display: flex;
