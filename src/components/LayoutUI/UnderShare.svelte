@@ -82,12 +82,12 @@
         </button>
         <button on:click={downloadImage}>
           <QRCode />
-          <span>QRコードをダウンロード</span>
+          <span>QRコードを保存</span>
         </button>
         {#if (Boolean(navigator.share))}
           <button on:click={openShareSheet}>
             <Share />
-            <span>他のアプリで共有</span>
+            <span>他のAppで共有</span>
           </button>
         {/if}
       </div>
