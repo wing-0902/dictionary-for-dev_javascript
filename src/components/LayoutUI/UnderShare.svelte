@@ -93,6 +93,10 @@
       </div>
     </div>
   </div>
+
+  {#if (open)}
+    <div class='backgroundSlot' on:click={open = false}></div>
+  {/if}
 </div>
 
 <style lang="scss">
@@ -154,6 +158,13 @@
           }
         }
       }
+    }
+    .backgroundSlot {
+      width: 100vw;
+      height: 100dvh;
+      top: 0;
+      left: 0;
+      z-index: 800;
     }
   }
 </style>
