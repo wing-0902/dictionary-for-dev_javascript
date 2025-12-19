@@ -42,7 +42,7 @@
         alert('このブラウザでは使用できないメニューです');
       }
     } catch (err) {
-      alert('不明なエラー：', error);
+      alert('不明なエラー：', err);
     }
   }
 </script>

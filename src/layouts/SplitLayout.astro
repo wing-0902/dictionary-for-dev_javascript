@@ -20,6 +20,7 @@ interface Props {
   fullScreen?: boolean;
   header?: string;
   leftComponent?: string;
+  showShare?: boolean;
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   fullScreen = false,
   header = '検索',
   leftComponent = header,
+  showShare = false,
 } = Astro.props
 
 let metaTitle: string = '';
@@ -98,7 +100,9 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
           <slot />
         </div>
         <div class="underbar">
-          <Underbar />
+          <Underbar
+            showShare={showShare}
+            shareTitle={metaTitle}/>
         </div>
       </section>
     </div>
@@ -152,6 +156,7 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
           height: calc(100% - 66px);
           width: 100%;
           overflow-y: scroll;
+          border-bottom: 0.5px solid var(--foreground);
         }
         .underbar {
           position: absolute;

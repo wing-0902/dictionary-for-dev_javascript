@@ -1,5 +1,17 @@
 ---
+import Share from '$components/LayoutUI/UnderShare.vue';
 
+interface Props {
+  showShare?: boolean;
+  shareTitle?: string;
+}
+
+const {
+  showShare = false,
+  shareTitle = '',
+} = Astro.props;
+
+const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <div class="root">
@@ -7,7 +19,7 @@
 
   </div>
   <div class="center">
-
+    {showShare && <Share client:load shareTitle={shareTitle} shareUrl={正規URL} />}
   </div>
   <div class="right">
 
@@ -17,8 +29,7 @@
 <style lang="scss">
   .root {
     height: 33px;
-    border: 0 solid var(--foreground);
-    border-top-width: 0.5px;
+    border: none;
     display: flex;
     justify-content: space-between;
   }

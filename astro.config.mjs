@@ -12,16 +12,9 @@ import alpinejs from '@astrojs/alpinejs';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://js.dictionary4.dev',
-  integrations: [
-    svelte(),
-    vue(),
-    mdx(),
-    sitemap(),
-    markdoc(),
-    alpinejs({
-      entrypoint: '/src/entrypoint',
-    })
-  ],
+  integrations: [svelte(), vue(), mdx(), sitemap(), markdoc(), alpinejs({
+    entrypoint: '/src/entrypoint',
+  })],
   experimental: {
     fonts: [
       {
