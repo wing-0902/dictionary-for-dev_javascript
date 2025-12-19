@@ -14,7 +14,7 @@
 
     const link = document.createElement('a');
     link.href = image;
-    link.download = 'qrcode.png';
+    link.download = `QR_CODE | ${shareTitle}`;
     link.click();
   }
   
@@ -23,6 +23,7 @@
 
   import Share from '$components/Icons/iOS_Share.svelte';
   import Copy from '$components/Icons/Copy.svg.svelte';
+  import QRCode from '$components/Icons/QRCode.svg.svelte';
 
   let open = false;
 
@@ -80,7 +81,7 @@
           <span>URLをコピー</span>
         </button>
         <button on:click={downloadImage}>
-
+          <QRCode />
           <span>QRコードをダウンロード</span>
         </button>
         {#if (Boolean(navigator.share))}
