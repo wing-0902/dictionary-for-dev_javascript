@@ -1,6 +1,21 @@
 <script lang='ts'>
   import { renderSVG } from 'uqr';
 
+  let captureElement: any;
+  import html2canvas from 'html2canvas';
+  async function downloadImage() {
+    if (!captureElement) return;
+
+    const canvas = await html2canvas(captureElement, {});
+
+    const image = canvas.toDataURL("image/png");
+
+    const link = document.createElement('a');
+    link.href = image;
+    link.download = 'qrcode.png';
+    link.click();
+  }
+  
   export let shareTitle: string;
   export let shareUrl: string;
 
@@ -52,7 +67,9 @@
     <div class='detailContent'>
       <div class='slot qrSlot'>
         <h3>QRコード</h3>
-        {@html coloredSvg}
+        <div bind:this={captureElement}>
+          {@html coloredSvg}
+        </div>
       </div>
       <div class='slot shareSlot'>
         <h3>共有</h3>
