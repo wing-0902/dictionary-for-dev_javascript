@@ -50,6 +50,8 @@
     reportMsg !== ''
     &&
     username !== ''
+    &&
+    agreeOnPolicy
 
 
   async function handleSubmit(event: Event) {
@@ -88,6 +90,10 @@
       </div>
     </fieldset>
     <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
+    <label>
+      <input type='checkbox' bind:value={agreeOnPolicy} />
+      フォームの規約に同意する
+    </label>
     <div class='submitBtnBox'>
       <button type='submit' disabled={!isValid}>
         送信
