@@ -1,1 +1,2 @@
-export const sessionToDel: string[] = ['username_form', 'email_form', 'comment_form', 'rate_form', 'form_status'];
+export const sessionToDel: string[] = ['comment_form', 'rate_form', 'form_status'];
+export const reportToDel: string[] = ['report_title', 'report_message', 'report_status'];

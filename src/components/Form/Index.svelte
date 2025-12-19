@@ -20,7 +20,6 @@
       for (const i of sessionToDel) {
         sessionStorage.removeItem(i);
       }
-      sessionStorage.removeItem('form_status')
     }
 
     username = sessionStorage.getItem('username_form') ?? '';
