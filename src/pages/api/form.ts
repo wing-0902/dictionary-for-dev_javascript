@@ -88,7 +88,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       errors.captcha = 'Turnstileトークンがありません'
     }
     // Turnstile検証
-    if (!errors.captcha && !errors.email && !errors.host && !errors.comment && !errors.score) {
+    if (Object.keys(errors).length === 0) {
       const TURNSTILE_SECRET_KEY = typedEnv.TURNSTILE_SECRET_KEY;
       const turnstileVerificationUrl = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
