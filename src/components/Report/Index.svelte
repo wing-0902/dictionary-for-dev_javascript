@@ -55,7 +55,8 @@
 
 
   async function handleSubmit(event: Event) {
-
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
   }
 </script>
 
