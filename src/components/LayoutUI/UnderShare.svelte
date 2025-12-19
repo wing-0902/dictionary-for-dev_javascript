@@ -6,7 +6,9 @@
   async function downloadImage() {
     if (!captureElement) return;
 
-    const canvas = await html2canvas(captureElement, {});
+    const canvas = await html2canvas(captureElement, {
+      backgroundColor: "black"
+    });
 
     const image = canvas.toDataURL("image/png");
 
@@ -76,6 +78,10 @@
         <button on:click={copyUrl}>
           <Copy />
           <span>URLをコピー</span>
+        </button>
+        <button on:click={downloadImage}>
+
+          <span>QRコードをダウンロード</span>
         </button>
         {#if (Boolean(navigator.share))}
           <button on:click={openShareSheet}>
