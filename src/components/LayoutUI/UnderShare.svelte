@@ -24,6 +24,7 @@
   import Share from '$components/Icons/iOS_Share.svelte';
   import Copy from '$components/Icons/Copy.svg.svelte';
   import QRCode from '$components/Icons/QRCode.svg.svelte';
+  import GoDown from '$components/Icons/GoDown.svg.svelte';
 
   let open = false;
 
@@ -76,6 +77,9 @@
   </button>
 
   <div class='detail' class:isOpen={open}>
+    <button class='closeArrow' on:click={handleClick}>
+      <GoDown />
+    </button>
     <div class='detailContent'>
       <div class='slot qrSlot'>
         <h3>QRコード</h3>
@@ -125,6 +129,11 @@
       color: var(--foreground);
     }
     .detail {
+      .closeArrow {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
       position: fixed;
       top: 150%;
       left: 50%;
@@ -143,7 +152,7 @@
         max-width: 100vw;
         margin: 0;
         &.isOpen {
-          top: calc(150% - 300px) !important;
+          top: calc(150% - 330px) !important;
         }
       }
       &.isOpen {
