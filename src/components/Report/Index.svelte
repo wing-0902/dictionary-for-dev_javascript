@@ -57,6 +57,70 @@
   async function handleSubmit(event: Event) {
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
+
+    // 規約
+    let hasError = false;
+    if (!agreeOnPolicy) {
+      hasError = true;
+      alert('規約に同意していただく必要があります')
+    }
+
+    // Turnstile
+    const token = formData.get('cf-turnstile-response');
+    if (!token) {
+      hasError = true;
+      alert('Turnstileトークンがありません．ボットでないことの検証を完了してください．')
+    }
+
+    // ユーザー名
+    if (username === '') {
+      hasError = true;
+      alert('記名してください');
+    }
+
+    // メール
+    if (email === '' || !isValidEmail(email)) {
+      hasError = true;
+      alert('メールアドレスが無効です．')
+    }
+
+    // タイトル
+    if (reportTitle === '') {
+      hasError = true;
+      alert('報告のタイトルを入力してください．')
+    }
+
+    // 本文
+    if (reportMsg === '') {
+      hasError = true;
+      alert('報告の本文を入力してください．')
+    }
+
+    if (hasError) {
+      return;
+    }
+
+    try {
+      // fetch APIを使ってサーバーにPOSTリクエストを送信
+      const response = await fetch('/api/report', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        hydrated = false;
+        sessionStorage.setItem('report_status', 'alreadySent');
+
+        window.location.href = '/form/report/success/';
+      } else {
+        alert(`送信失敗：${result.error}`);
+      }
+    } catch (e) {
+      alert('通信エラーが発生しました．');
+      console.error('Error:', e);
+    }
   }
 
   let nameTouched: boolean = false;
