@@ -137,13 +137,13 @@
       <div class='spacer'>
         <Required />
         <label for='name'>お名前</label><br/>
-        <input on:focus={() => nameTouched = true} name='name' placeholder='お名前' type='text' id='name' bind:value={username} class='formTextSlot' />
+        <input class:error={nameTouched && (username === '')} on:focus={() => nameTouched = true} name='name' placeholder='お名前' type='text' id='name' bind:value={username} class='formTextSlot' />
       </div>
       <br />
       <div class='spacer'>
         <Required />
         <label for='email'>メールアドレス</label><br/>
-        <input on:focus={() => emailTouched = true} name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} class='formTextSlot' />
+        <input class:error={emailTouched && (email === '' || !isValidEmail(email))} on:focus={() => emailTouched = true} name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} class='formTextSlot' />
       </div>
       <p>{errorMsgAboutEmail}</p>
     </fieldset>
@@ -152,12 +152,12 @@
       <div class='spacer'>
         <Required />
         <label for='report_title'>タイトル</label><br/>
-        <input on:focus={() => titleTouched = true} name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} class='formTextSlot' />
+        <input class:error={titleTouched && (reportTitle === '')} on:focus={() => titleTouched = true} name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} class='formTextSlot' />
       </div>
       <div>
         <Required />
         <label for='report_message'>本文</label><br/>
-        <textarea on:focus={() => messageTouched = true} name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg} class='formTextSlot'></textarea>
+        <textarea class:error={messageTouched && (reportMsg === '')} on:focus={() => messageTouched = true} name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg} class='formTextSlot'></textarea>
       </div>
     </fieldset>
     <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
@@ -166,7 +166,7 @@
       フォームの規約に同意する
     </label>
     <div class='submitBtnBox'>
-      <button type='submit' disabled={!isValid}>
+      <button type='submit' disabled={!isValid} on:click={() => trySubmit()}>
         送信
       </button>
     </div>
