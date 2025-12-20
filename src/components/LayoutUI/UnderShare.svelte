@@ -108,13 +108,12 @@
   </div>
 
   {#if (open)}
-    <button
+    <div
       class='backgroundSlot'
-      role='button'
       tabindex='0'
       aria-label="メニューを閉じる"
       on:click|preventDefault={handleClick}>
-    </button>
+    </div>
   {/if}
 </div>
 
@@ -129,7 +128,6 @@
       color: var(--foreground);
     }
     .detail {
-      perspective: 500px;
       .closeArrow {
         width: 100%;
         display: flex;
@@ -159,9 +157,6 @@
       &.isOpen {
         top: calc(150% - 300px);
       }
-      &.isClose {
-        transform: rotateX(-60deg);
-      }
       .detailContent {
         display: flex;
         @media (max-width: 400px) {
@@ -185,9 +180,6 @@
           padding: 10px;
           &.qrSlot {
             width: 140px;
-            .qrSvgSlot {
-
-            }
           }
           &.shareSlot {
             display: flex;
