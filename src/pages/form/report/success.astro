@@ -1,0 +1,15 @@
+---
+import SplitLayout from "../../../layouts/SplitLayout.astro";
+import Thanks from "$components/Report/Thanks.svelte";
+---
+
+<SplitLayout
+  title="送信完了 - バグ報告"
+  noindex={true}
+  fullScreen={true}
+  header="表示なし"
+>
+  <h1>バグ報告が送信されました</h1>
+  <p>ご協力ありがとうございます．お客様の御報告は，改善の参考にさせていただきます．</p>
+  <Thanks client:load />
+</SplitLayout>
