@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request, locals}) => {
     
     const errors: Record<string, string> = {};
 
-    if (!rawName || !rawEmail || isValidEmail(rawEmail?.toString() || '') || !rawTitle || !rawMessage) {
+    if (!rawName || !rawEmail || !isValidEmail(rawEmail?.toString() || '') || !rawTitle || !rawMessage) {
       errors.content = 'フォームの内容が不足しています．';
     }
 
