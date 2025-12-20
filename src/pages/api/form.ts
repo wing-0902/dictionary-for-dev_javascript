@@ -88,7 +88,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
       if (!verificationResult.success) {
         console.error('Turnstile検証失敗:', verificationResult['error-codes']);
-        errors.turnstile = '不正な操作の可能性があります。ページを再読み込みして再度お試しください。';
+        errors.turnstile = '不正な操作の可能性があります。ページを再読み込みして再度お試しください．';
       }
     }
     if (Object.keys(errors).length > 0) {
@@ -131,12 +131,4 @@ export const POST: APIRoute = async ({ request, locals }) => {
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
-};
-
-
-export const GET: APIRoute = () => {
-  return new Response(JSON.stringify({ error: 'この形式のリクエストは許可されていません．' }), {
-    status: 405,
-    headers: { 'Content-Type': 'application/json' },
-  });
 };
