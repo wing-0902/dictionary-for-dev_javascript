@@ -58,6 +58,12 @@
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
   }
+
+  let nameTouched: boolean = false;
+  let emailTouched: boolean = false;
+  let titleTouched: boolean = false;
+  let messageTouched: boolean = false;
+  let policyTouched: boolean = false;
 </script>
 
 <div class='root'>
@@ -67,13 +73,13 @@
       <div class='spacer'>
         <Required />
         <label for='name'>お名前</label><br/>
-        <input name='name' placeholder='お名前' type='text' id='name' bind:value={username} />
+        <input on:focus={() => nameTouched = true} name='name' placeholder='お名前' type='text' id='name' bind:value={username} />
       </div>
       <br />
       <div class='spacer'>
         <Required />
         <label for='email'>メールアドレス</label><br/>
-        <input name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} />
+        <input on:focus={() => emailTouched = true} name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} />
       </div>
       <p>{errorMsgAboutEmail}</p>
     </fieldset>
@@ -82,17 +88,17 @@
       <div class='spacer'>
         <Required />
         <label for='report_title'>タイトル</label>
-        <input name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} />
+        <input on:focus={() => titleTouched = true} name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} />
       </div>
       <div>
         <Required />
         <label for='report_message'>本文</label>
-        <textarea name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg}></textarea>
+        <textarea on:focus={() => messageTouched = true} name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg}></textarea>
       </div>
     </fieldset>
     <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
     <label>
-      <input type='checkbox' bind:checked={agreeOnPolicy} />
+      <input on:focus={() => policyTouched = true} type='checkbox' bind:checked={agreeOnPolicy} />
       フォームの規約に同意する
     </label>
     <div class='submitBtnBox'>
