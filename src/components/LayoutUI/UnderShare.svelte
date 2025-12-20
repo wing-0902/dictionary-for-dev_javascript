@@ -12,10 +12,31 @@
 
     const image = canvas.toDataURL("image/png");
 
-    const link = document.createElement('a');
-    link.href = image;
-    link.download = `QR_CODE | ${shareTitle}`;
-    link.click();
+    canvas.toBlob(async (blob) => {
+      if (!blob) {
+        console.error("Blobの作成に失敗しました");
+        return;
+      }
+
+      const file = new File([blob], `qrcode_${shareTitle}.png`, { type: "image/png" });
+    
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: `QR CODE | ${shareTitle}`,
+          });
+          console.log("共有成功！");
+        } catch (error) {
+          console.error("共有に失敗しました:", error);
+        }
+      } else {
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = `QR_CODE | ${shareTitle}`;
+        link.click();
+      }
+    }, "image/png");
   }
   
   export let shareTitle: string;
