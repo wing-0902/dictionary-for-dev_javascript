@@ -19,19 +19,6 @@ interface SurveyData {
   timestamp: number;
 }
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
-
-export const OPTIONS: APIRoute = () => {
-  return new Response(null, {
-    status: 204, // No Content
-    headers: corsHeaders,
-  });
-};
-
 export const POST: APIRoute = async ({ request, locals }) => {
   const id = uuidv4();
 
@@ -135,13 +122,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     return new Response(
       JSON.stringify({ message: 'フォームの送信が成功しました。' }),
-      { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
     console.error('API処理エラー:', error);
     return new Response(
       JSON.stringify({ message: 'サーバー側で予期せぬエラーが発生しました。' }),
-      { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };
@@ -150,6 +137,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
 export const GET: APIRoute = () => {
   return new Response(JSON.stringify({ error: 'この形式のリクエストは許可されていません．' }), {
     status: 405,
-    headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    headers: { 'Content-Type': 'application/json' },
   });
 };
