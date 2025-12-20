@@ -25,7 +25,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-
 export const OPTIONS: APIRoute = () => {
   return new Response(null, {
     status: 204, // No Content
