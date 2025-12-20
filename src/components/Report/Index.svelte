@@ -137,13 +137,13 @@
       <div class='spacer'>
         <Required />
         <label for='name'>お名前</label><br/>
-        <input on:focus={() => nameTouched = true} name='name' placeholder='お名前' type='text' id='name' bind:value={username} />
+        <input on:focus={() => nameTouched = true} name='name' placeholder='お名前' type='text' id='name' bind:value={username} class='formTextSlot' />
       </div>
       <br />
       <div class='spacer'>
         <Required />
         <label for='email'>メールアドレス</label><br/>
-        <input on:focus={() => emailTouched = true} name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} />
+        <input on:focus={() => emailTouched = true} name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} class='formTextSlot' />
       </div>
       <p>{errorMsgAboutEmail}</p>
     </fieldset>
@@ -151,13 +151,13 @@
       <legend>レポート</legend>
       <div class='spacer'>
         <Required />
-        <label for='report_title'>タイトル</label>
-        <input on:focus={() => titleTouched = true} name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} />
+        <label for='report_title'>タイトル</label><br/>
+        <input on:focus={() => titleTouched = true} name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} class='formTextSlot' />
       </div>
       <div>
         <Required />
-        <label for='report_message'>本文</label>
-        <textarea on:focus={() => messageTouched = true} name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg}></textarea>
+        <label for='report_message'>本文</label><br/>
+        <textarea on:focus={() => messageTouched = true} name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg} class='formTextSlot'></textarea>
       </div>
     </fieldset>
     <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
@@ -175,7 +175,7 @@
 
 <style lang="scss">
   .root {
-    font-family: var(--font-zen-kaku-gothic);
+    font-family: var(--font-zen-kaku-gothic-new);
     box-sizing: border-box;
     form {
       .submitBtnBox {
@@ -200,7 +200,35 @@
       // formブロックのスタイル
       margin: auto 10px;
       box-sizing: border-box;
-      
+
+      .aboutYou {
+        max-width: 100%;
+        .spacer {
+          align-items: last baseline;
+          overflow-x: wrap;
+          input {
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 280px;
+            margin: 0;
+            height: 40px;
+            &[type='email'] {
+              font-family: var(--font-fira-code);
+            }
+          }
+        }
+      }
+      .本題 {
+        max-width: 100%;
+        textarea {
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 19px;
+          height: 100px;
+          resize: none;
+          background: var(--codeBack);
+        }
+      }
     }
   }
 </style>
