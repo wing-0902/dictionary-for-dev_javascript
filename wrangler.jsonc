@@ -17,6 +17,10 @@
     {
       "binding": "SURVEY_ANSWERS",
       "id": "fa3beb81d4044eb683f23e4f59c81622"
+    },
+    {
+      "binding": "REPORT_ANSWERS",
+      "id": "fb7e20187f5544c3b0ea9135fd899589"
     }
   ]
 }

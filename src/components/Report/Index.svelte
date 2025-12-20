@@ -166,7 +166,7 @@
       フォームの規約に同意する
     </label>
     <div class='submitBtnBox'>
-      <button type='submit' disabled={!isValid} on:click={() => trySubmit()}>
+      <button type='submit' disabled={!isValid}>
         送信
       </button>
     </div>
