@@ -12,10 +12,10 @@ interface RuntimeEnv {
 
 interface SurveyData {
   host: string;
-  username?: string;
-  email?: string;
-  rate: number;
-  comment?: string;
+  username: string;
+  email: string;
+  report_title: string;
+  report_message: string;
   timestamp: number;
 }
 
