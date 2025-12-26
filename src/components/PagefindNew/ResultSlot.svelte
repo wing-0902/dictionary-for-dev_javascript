@@ -1,13 +1,14 @@
 <script lang='ts'>
   export let searchWord: string;
   export let searchMode: string;
+  export let allList;
 </script>
 
 <section class='root'>
-  {#if searchWord === ''}
+  {#if (searchMode === '見出し')}
+  {:else if searchWord === ''}
     <div class='message'>
-      {#if (searchMode === '見出し')}
-      {:else if (searchMode === '用例')}
+      {#if (searchMode === '用例')}
         <p>このモードでは，コードブロック内の用例を検索します．</p>
       {:else if (searchMode === '全文')}
         <p>このモードでは，コンテンツの全文を検索できます．</p>
