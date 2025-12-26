@@ -1,8 +1,9 @@
 ---
 import SearchIslandEntrance from './SearchUI/IslandEntrance.svelte';
-import LicenseList from './License/LicenseList.astro';
 
 import LicenseSearch from './License/LicenseSearch.astro';
+
+import PagefindNewEntrance from '$components/PagefindNew/Entrance.svelte';
 
 import { getCollection } from 'astro:content';
 
@@ -28,8 +29,8 @@ const {
     } else {
       return (
         <>
-          <SearchIslandEntrance
-            client:only="svelte"
+          <PagefindNewEntrance
+            client:load
             allList={dictEntries} />
         </>
       );
