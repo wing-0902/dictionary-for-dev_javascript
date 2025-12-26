@@ -23,6 +23,9 @@
       type='search'
       placeholder='入力して検索'
       aria-label='検索語句を入力'
+      autocorrect="off" 
+      autocapitalize="none"
+      spellcheck="false"
       bind:value={searchWord}/>
     {#if (searchWord !== '')}
       <button
