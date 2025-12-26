@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import PullToDelete from "./PullToDelete.svelte";
 
   export let allList;
 
@@ -16,10 +17,30 @@
     <InputSlot bind:searchWord={searchWord} />
     <Config bind:searchMode={searchMode} />
   </div>
+  <div class='result'>
+    <div class='resultSlot'>
+      <PullToDelete on:pull={() => searchWord = '' }>
+あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+      </PullToDelete>
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
   .root {
     height: calc(100dvh - var(--headerHeight));
+    display: absolute;
+    .config {
+      height: 68px;
+      display: relative;
+    }
+    .result {
+      height: calc(100dvh - var(--headerHeight) - 68px);
+      overflow-y: scroll;
+      .resultSlot {
+        margin-bottom: 20px;
+        
+      }
+    }
   }
 </style>
