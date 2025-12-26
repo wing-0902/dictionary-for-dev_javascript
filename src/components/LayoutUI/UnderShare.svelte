@@ -1,6 +1,16 @@
 <script lang='ts'>
   import { renderSVG } from 'uqr';
 
+  import { onMount } from 'svelte';
+
+  // 共有シートの利用可否
+  let shareAvailable = false;
+  onMount(() => {
+    if (Boolean(navigator.share)) {
+      shareAvailable = true;
+    }
+  })
+
   let captureElement: any;
   import html2canvas from 'html2canvas';
   async function downloadImage() {
@@ -98,7 +108,7 @@
   </button>
 
   <div class='detail' class:isOpen={open} class:isClose={!open}>
-    <button class='closeArrow' on:click={handleClick}>
+    <button class='closeArrow' on:click={() => { open = false; }}>
       <GoDown />
     </button>
     <div class='detailContent'>
@@ -118,7 +128,7 @@
           <QRCode />
           <span>QRコードを保存</span>
         </button>
-        {#if (Boolean(navigator.share))}
+        {#if shareAvailable}
           <button on:click={openShareSheet}>
             <Share />
             <span>他のAppで共有</span>
@@ -133,7 +143,7 @@
       class='backgroundSlot'
       tabindex='0'
       aria-label="メニューを閉じる"
-      on:click|preventDefault={handleClick}>
+      on:click|preventDefault={() => { open = false; }}>
     </div>
   {/if}
 </div>
