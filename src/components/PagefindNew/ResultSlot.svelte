@@ -1,3 +1,8 @@
+<script lang='ts'>
+  export let searchWord: string;
+  export let searchMode: string;
+</script>
+
 <section class='root'>
 
 </section>

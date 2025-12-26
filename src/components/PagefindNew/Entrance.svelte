@@ -21,7 +21,7 @@
   <div class='result'>
     <div class='resultSlot'>
       <PullToDelete on:pull={() => searchWord = '' }>
-        <ResultSlot />
+        <ResultSlot searchWord={searchWord} searchMode={searchMode} />
       </PullToDelete>
     </div>
   </div>
