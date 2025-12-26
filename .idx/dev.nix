@@ -16,6 +16,9 @@
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       "ms-vscode.vscode-typescript-next"
+      "astro-build.astro-vscode"
+      "sdras.night-owl"
+      "svelte.svelte-vscode"
     ];
 
     # Enable previews
