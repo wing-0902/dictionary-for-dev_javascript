@@ -58,10 +58,11 @@
     .indicator {
       text-align: center;
       font-size: 12px;
+      height: 12px;
       color: gray;
     }
     .slot {
-      margin-top: 6px;
+      margin-top: 8px;
     }
   }
 </style>
