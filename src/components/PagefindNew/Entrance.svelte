@@ -4,13 +4,18 @@
   export let allList;
 
   let searchMode: string;
+  let searchWord: string;
 
   // コンポーネント一覧
   import Config from './Config.svelte';
+  import InputSlot from './Slot.svelte';
 </script>
 
 <div class='root'>
-  <Config bind:searchMode={searchMode} />
+  <div class='config'>
+    <InputSlot bind:searchWord={searchWord} />
+    <Config bind:searchMode={searchMode} />
+  </div>
 </div>
 
 <style lang="scss">
