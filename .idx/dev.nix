@@ -19,6 +19,7 @@
       "astro-build.astro-vscode"
       "sdras.night-owl"
       "svelte.svelte-vscode"
+      "Vue.volar"
     ];
 
     # Enable previews
