@@ -5,6 +5,7 @@
   let hydrated = false;
 
   onMount(() => {
+    // クエリパラメータを取得
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const query = urlParams.get('q');
@@ -12,6 +13,11 @@
     if (query) {
       sessionStorage.setItem('searchWord', query);
     }
+
+    // URLを書き換える
+    const cleanUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState(null, '', cleanUrl);
+    
     searchWord = sessionStorage.getItem('searchWord') ?? '';
     hydrated = true;
   })
