@@ -1,0 +1,23 @@
+.search-output {
+  .ステータス {
+    text-align: center;
+  }
+  ul.結果一覧 {
+    list-style-type: none;
+    margin-left: -22px;
+    hr {
+      margin: 7px 0 7px 11px;
+    }
+    li.項目 {
+      margin: 0;
+      a {
+        margin: 0;
+        h2 {
+          margin: 0;
+          font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

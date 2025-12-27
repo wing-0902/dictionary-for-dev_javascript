@@ -97,10 +97,7 @@
     {#each searchResults as result}
       <hr />
       <li class="項目">
-        <a
-          class='項目リンク'
-          href=result.url
-        >
+        <a href=result.url>
           <h2>{result.meta.title || result.url}</h2>
           <p class="詳細">{@html result.excerpt}</p>
         </a>
