@@ -128,3 +128,7 @@
     <p class='helpMessage'>このモードでは，コードブロック内の用例だけを検索できます．</p>
   {/if}
 </div>
+
+<style lang='scss'>
+  @import './style.scss';
+</style>
