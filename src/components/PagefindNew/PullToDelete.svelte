@@ -7,7 +7,7 @@
   let pullDistance = 0;
   let pulling = false;
 
-  const THRESHOLD = 80; // ここ超えたら発火
+  const THRESHOLD = 180; // ここ超えたら発火
 
   function onTouchStart(e) {
     startY = e.touches[0].clientY;
@@ -59,7 +59,8 @@
       text-align: center;
       font-size: 12px;
       height: 12px;
-      color: gray;
+      color: var(--foreground);
+      opacity: 0.7;
     }
     .slot {
       margin-top: 8px;
