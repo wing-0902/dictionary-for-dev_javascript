@@ -23,9 +23,9 @@
     </div>
   {:else}
     {#if searchMode === '用例'}
-      <ExamplePagefind />
+      <ExamplePagefind query={searchWord} />
     {:else if searchMode === '全文'}
-      <TextPagefind />
+      <TextPagefind query={searchWord} />
     {:else}
       <div class='message'>
         <p>検索モードを選択してください．</p>
