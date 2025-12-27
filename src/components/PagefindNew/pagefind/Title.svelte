@@ -24,6 +24,8 @@
       }
     }, 300);
   }
+
+  import { 結果なし } from './msg.mts';
 </script>
 
 <div class='root'>
@@ -36,7 +38,9 @@
         </a>
       </li>
     {:else}
-      <li>一致する項目が見つかりませんでした。</li>
+      <li>
+        <p class='status'>{結果なし}</p>
+      </li>
     {/each}
     <hr/>
   </ul>
@@ -44,14 +48,17 @@
 
 <style lang='scss'>
   .root {
+    width: 100%;
     ul {
       list-style-type: none;
       margin-left: -22px;
+      width: 100%;
       hr {
         margin: 7px 0 7px 11px;
       }
       li {
         margin: 0;
+        width: 100%;
         a {
           margin: 0;
           h2 {
@@ -59,6 +66,10 @@
             font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
             font-size: 20px;
           }
+        }
+        .status {
+          width: 100%;
+          text-align: center;
         }
       }
     }
