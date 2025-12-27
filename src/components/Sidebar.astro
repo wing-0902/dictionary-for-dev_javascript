@@ -1,0 +1,47 @@
+---
+import LicenseSearch from './License/LicenseSearch.astro';
+
+import PagefindNewEntrance from '$components/PagefindNew/Entrance.svelte';
+
+import { getCollection } from 'astro:content';
+
+const dictEntries = await getCollection('dictionary', ({ data }) => {
+  return data.draft === false;
+});
+
+interface Props {
+  content?: string;
+}
+
+const {
+  content = '検索'
+} = Astro.props;
+---
+
+<div class='root'>
+  {(() => {
+    if (content === 'ライセンス') {
+      return (
+        <>
+          <LicenseSearch />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <PagefindNewEntrance
+            client:load
+            allList={dictEntries}
+            transition:persist />
+        </>
+      );
+    }
+  })()}
+</div>
+
+<style lang='scss'>
+  .root {
+    height: calc(100dvh - var(--headerHeight));
+    overflow: scroll;
+  }
+</style>
