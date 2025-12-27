@@ -108,7 +108,7 @@
             {#if index > 0} 
               <li class="中身">
                 <a href=subResult.url>
-                  <h3 class="タイトル">{subResult.title}</h3>
+                  <h3>{subResult.title}</h3>
                 </a>
               </li>
             {/if}
