@@ -66,7 +66,7 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
     <Font cssVariable="--font-zen-maru-gothic" preload />
   </head>
   <body>
-    <header transition:persist>
+    <header>
       <HeaderContent header={header} />
     </header>
     <div class='contentSlot'>
@@ -88,7 +88,6 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
       >
         <div class="topbar">
           <Topbar
-            transition:persist
             title={topbarTitle}
             href={header}
             notShow={fullScreen}
@@ -100,7 +99,6 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
         </div>
         <div class="underbar">
           <Underbar
-            transition:persist
             showShare={showShare}
             shareTitle={metaTitle}/>
         </div>

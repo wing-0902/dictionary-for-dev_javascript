@@ -17,12 +17,10 @@ const {
 <div class="root">
   <div class="dummy"></div>
   <div class="nav">
-    <QueryLink
-      href="/"
+    <a
       class={`
         ${header === '検索' ? '色付き' : ''}
       `}
-      client:only
     >
       <div
         class={`
@@ -33,7 +31,7 @@ const {
         <Search />
         <span>検索</span>
       </div>
-    </QueryLink>
+    </a>
   </div>
   <div class="clickHere">
     <ClickHere client:load />
