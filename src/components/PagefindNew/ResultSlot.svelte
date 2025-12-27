@@ -4,6 +4,8 @@
   export let allList;
 
   import TitlePagefind from './pagefind/Title.svelte';
+  import ExamplePagefind from './pagefind/Ex.svelte';
+  import TextPagefind from './pagefind/Text.svelte';
 </script>
 
 <section class='root'>
@@ -20,6 +22,15 @@
       {/if}
     </div>
   {:else}
+    {#if searchMode === '用例'}
+      <ExamplePagefind />
+    {:else if searchMode === '全文'}
+      <TextPagefind />
+    {:else}
+      <div class='message'>
+        <p>検索モードを選択してください．</p>
+      </div>
+    {/if}
   {/if}
 </section>
 
