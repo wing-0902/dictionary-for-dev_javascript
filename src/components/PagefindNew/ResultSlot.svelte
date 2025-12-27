@@ -2,10 +2,13 @@
   export let searchWord: string;
   export let searchMode: string;
   export let allList;
+
+  import TitlePagefind from './pagefind/Title.svelte';
 </script>
 
 <section class='root'>
   {#if (searchMode === '見出し')}
+    <TitlePagefind allList={allList} searchWord={searchWord} />
   {:else if searchWord === ''}
     <div class='message'>
       {#if (searchMode === '用例')}
