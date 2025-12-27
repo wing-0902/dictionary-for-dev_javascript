@@ -27,9 +27,7 @@
     {:else if searchMode === '全文'}
       <TextPagefind query={searchWord} />
     {:else}
-      <div class='message'>
-        <p>検索モードを選択してください．</p>
-      </div>
+      <TitlePagefind allList={allList} searchWord={searchWord} />
     {/if}
   {/if}
 </section>
