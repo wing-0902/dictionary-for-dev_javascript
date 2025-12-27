@@ -5,6 +5,13 @@
   let hydrated = false;
 
   onMount(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const query = urlParams.get('q');
+
+    if (query) {
+      sessionStorage.setItem('searchWord', query);
+    }
     searchWord = sessionStorage.getItem('searchWord') ?? '';
     hydrated = true;
   })
