@@ -99,7 +99,7 @@
       <li class="項目">
         <a
           class='項目リンク'
-          href=result.url
+          href={result.url}
         >
           <h2>{result.meta.title || result.url}</h2>
           <p class="詳細">{@html result.excerpt}</p>
@@ -110,7 +110,7 @@
           {#each result.sub_results as subResult, index}
             {#if index > 0} 
               <li class="中身">
-                <a href=subResult.url>
+                <a href={subResult.url}>
                   <h3 class="タイトル">{subResult.title}</h3>
                 </a>
               </li>
