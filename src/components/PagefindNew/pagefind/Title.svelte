@@ -49,12 +49,14 @@
 <style lang='scss'>
   .root {
     width: 100%;
+    overflow-x: hidden;
     ul {
       list-style-type: none;
       margin-left: -22px;
       width: 100%;
       hr {
         margin: 7px 0 7px 11px;
+        width: 100%;
       }
       li {
         margin: 0;
