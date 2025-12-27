@@ -20,7 +20,7 @@ const {
 } = Astro.props;
 ---
 
-<div class='root'>
+<div class='root' transition:persist>
   {(() => {
     if (content === 'ライセンス') {
       return (
