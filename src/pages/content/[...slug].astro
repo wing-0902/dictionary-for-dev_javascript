@@ -3,7 +3,9 @@ import { getCollection, render } from "astro:content";
 import SplitLayout from "../../layouts/SplitLayout.astro";
 
 export async function getStaticPaths() {
-  const bookEntries = await getCollection('dictionary');
+  const bookEntries = await getCollection('dictionary', ({ data }) => {
+    return data.draft === false;
+  });
   return bookEntries.map(entry => ({
     params: { slug: entry.slug },
     props: { entry },

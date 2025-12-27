@@ -7,7 +7,9 @@ import PagefindNewEntrance from '$components/PagefindNew/Entrance.svelte';
 
 import { getCollection } from 'astro:content';
 
-const dictEntries = await getCollection('dictionary');
+const dictEntries = await getCollection('dictionary', ({ data }) => {
+  return data.draft === false;
+});
 
 interface Props {
   content?: string;
