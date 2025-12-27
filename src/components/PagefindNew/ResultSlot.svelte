@@ -37,11 +37,14 @@
 <style lang="scss">
   .root {
     height: calc(100dvh - var(--headerHeight) - 68px);
+    width: 100%;
     .message {
       height: 100%;
+      width: 100%;
       display: flex;
       align-items: center;
       p {
+        width: 100%;
         text-align: center;
       }
     }
