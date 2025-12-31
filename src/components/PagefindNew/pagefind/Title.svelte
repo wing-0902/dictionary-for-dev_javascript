@@ -22,7 +22,7 @@
           return keywords.every(keyword => title.includes(keyword));
         });
       }
-    }, 300);
+    }, 0);
   }
 
   import { 結果なし } from './msg.mts';
