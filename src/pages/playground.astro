@@ -1,0 +1,12 @@
+---
+import SplitLayout from "../layouts/SplitLayout.astro";
+import Entry from '$components/Playground/Entry.svelte';
+---
+
+<SplitLayout
+  title="Playground"
+  fullScreen={true}
+  header="その他"
+  showShare={true}>
+  <Entry client:load />
+</SplitLayout>
