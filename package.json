@@ -51,6 +51,7 @@
     "@cloudflare/workers-types": "^4.20251209.0",
     "@types/alpinejs": "^3.13.11",
     "@types/alpinejs__mask": "^3.13.4",
-    "@types/alpinejs__persist": "^3.13.4"
+    "@types/alpinejs__persist": "^3.13.4",
+    "sharp": "^0.34.5"
   }
 }
