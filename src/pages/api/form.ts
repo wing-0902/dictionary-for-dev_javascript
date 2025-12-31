@@ -83,7 +83,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${ip}&idempotency_key=${id}`,
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteip=${ip}&idempotency_key=${id}`,
       });
       const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
       if (!verificationResult.success) {
