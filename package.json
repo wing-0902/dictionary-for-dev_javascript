@@ -14,7 +14,7 @@
   },
   "scripts": {
     "license:listup": "node generate-license.mjs",
-    "license:generate": "license-checker --json --production --packages ./node_modules/.pnpm --out src/data/license-data.json"
+    "license:generate": "license-checker --json --production --packages ./node_modules/.pnpm --out src/data/license-data.json",
     "dev": "pnpm license:generate && astro dev",
     "build": "pnpm license:generate && astro build",
     "pagefind:full": "pagefind --site dist/content --output-path dist/content_search",
