@@ -13,6 +13,7 @@
     "url": "https://wing.osaka/"
   },
   "scripts": {
+    "license:listup": "node generate-license.mjs",
     "license:generate": "license-checker --json --production --out src/data/license-data.json",
     "dev": "pnpm license:generate && astro dev",
     "build": "pnpm license:generate && astro build",
