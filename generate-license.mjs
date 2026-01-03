@@ -40,6 +40,6 @@ for (const licenseName in licensesGrouped) {
   }
 }
 
-const outputPath = './src/data/license-data.json';
+const outputPath = './src/data/license-list.json';
 fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
 console.log(`Done! Saved ${result.length} licenses to ${outputPath}`);
