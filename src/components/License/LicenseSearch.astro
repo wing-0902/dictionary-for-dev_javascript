@@ -82,16 +82,22 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
 <style lang="scss">
   section {
     overflow-x: hidden;
+    height: calc(100dvh - var(--headerHeight));
     h2 {
       font-size: 18px;
+      height: 25px;
     }
     .alpinejs-slot {
+      height: calc(100% - 25px);
       .alpineSearch{
-        position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        height: 50px;
         input {
           background: var(--codeBack);
           color: var(--foreground);
-          margin: 2px 5px;
+          margin: 0;
           width: 100%;
           font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
           height: 40px;
@@ -124,6 +130,8 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
         text-align: center;
       }
       ul {
+        height: calc(100dvh - 25px - var(--headerHeight) - 50px);
+
         li {
           list-style-type: none;
           margin-left: -18px;
