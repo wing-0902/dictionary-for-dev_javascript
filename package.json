@@ -58,5 +58,6 @@
     "@types/alpinejs__mask": "^3.13.4",
     "@types/alpinejs__persist": "^3.13.4",
     "sharp": "^0.34.5"
-  }
+  },
+  "packageManager": "yarn@4.9.1"
 }
