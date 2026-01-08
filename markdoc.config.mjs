@@ -5,7 +5,7 @@ import { transformerNotationDiff } from '@shikijs/transformers';
 export default defineMarkdocConfig({
   tags: {
     code: {
-      render: component('./src/components/CodeLayout.astro'),
+      render: component('./src/components/MarkdocComponents/CodeLayout.astro'),
       attributes: {
         // https://markdoc.dev/docs/attributes#defining-attributes
         title: { type: String },
