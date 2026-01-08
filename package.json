@@ -15,12 +15,12 @@
   "scripts": {
     "license:listup": "node generate-license.mjs",
     "license:generate": "license-checker --json --production --out src/data/license-data.json",
-    "dev": "npm license:generate && astro dev",
-    "build": "npm license:generate && astro build",
+    "dev": "yarn license:generate && astro dev",
+    "build": "yarn license:generate && astro build",
     "pagefind:full": "pagefind --site dist/content --output-path dist/content_search",
     "pagefind:title_only": "pagefind --site dist/content --root-selector 'h1' --output-path dist/title_only_search",
     "pagefind:code_only": "pagefind --site dist/content --root-selector 'h1, code' --output-path dist/code_only_search",
-    "postbuild": "npm pagefind:full && npm pagefind:title_only && npm pagefind:code_only",
+    "postbuild": "yarn pagefind:full && yarn pagefind:title_only && yarn pagefind:code_only",
     "preview": "astro preview",
     "astro": "astro"
   },
