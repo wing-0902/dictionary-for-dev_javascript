@@ -12,7 +12,7 @@ const licenseEntries = rawEntries.filter(
 const licenseEntriesJson = JSON.stringify(licenseEntries);
 ---
 
-<section>
+<section class='root'>
   <h2>ライセンス一覧</h2>
 
   <div
@@ -80,8 +80,8 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
 </section>
 
 <style lang="scss">
-  section {
-    overflow-x: hidden;
+  .root {
+    overflow: hidden;
     height: calc(100dvh - var(--headerHeight));
     h2 {
       font-size: 18px;
@@ -130,8 +130,9 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
         text-align: center;
       }
       ul {
-        height: calc(100dvh - 25px - var(--headerHeight) - 50px);
-
+        height: calc(100dvh - 165px - var(--headerHeight));
+        overflow-y: scroll;
+        overflow-x: hidden;
         li {
           list-style-type: none;
           margin-left: -18px;
