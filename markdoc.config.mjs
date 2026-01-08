@@ -25,7 +25,11 @@ export default defineMarkdocConfig({
   nodes: {
     image: {
       ...nodes.image, 
-      renred: component('./src/components/MarkdocImage.astro'),
+      render: component('./src/components/MarkdocComponents/MarkdocImage.astro'),
+    },
+    link: {
+      ...nodes.link,
+      render: component('./src/components/MarkdocComponents/ExternalLink.astro'),
     },
   },
 });

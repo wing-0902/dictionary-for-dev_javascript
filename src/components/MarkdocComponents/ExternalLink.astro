@@ -1,0 +1,27 @@
+---
+const { href, title } = Astro.props;
+
+const isExternal = href.startsWith('http') || href.startsWith('//');
+
+// 自分のドメインを除外したい場合は以下のように追加
+// const isInternal = href.includes('yourdomain.com');
+// const shouldOpenNewTab = isExternal && !isInternal;
+---
+
+<a 
+  href={href} 
+  title={title} 
+  target={isExternal ? "_blank" : undefined} 
+  rel={isExternal ? "noopener noreferrer nofollow external" : undefined}
+>
+  <slot />
+</a>
+
+<style lang="scss">
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+</style>
