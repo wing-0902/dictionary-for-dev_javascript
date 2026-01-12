@@ -44,6 +44,7 @@
     "license-checker": "^25.0.1",
     "localforage": "^1.10.0",
     "pagefind": "^1.4.0",
+    "prettier-plugin-svelte": "^3.4.1",
     "sass": "^1.94.0",
     "svelte": "^5.43.6",
     "svelte-codemirror-editor": "^2.1.0",

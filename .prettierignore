@@ -1,0 +1,28 @@
+# パッケージマネージャー
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+
+# 依存ライブラリ
+node_modules/
+
+# キャッシュや一時ファイル
+.cache/
+.temp/
+
+# 成果物
+dist/
+out/
+.astro/
+
+# コピー
+/public/
+
+# 環境変数（秘匿情報が含まれるため、触らないのが安全）
+.env
+.env.*
+
+# Git関連
+.git/
