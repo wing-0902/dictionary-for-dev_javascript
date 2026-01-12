@@ -21,18 +21,55 @@
     </svg>
   </button>
 
-  <div></div>
+  <div class='slot' class:isClosed={!isOpen}>
+  
+  </div>
+
+  {#if isOpen}
+    <div class='background' title='履歴を閉じる' onclick={() => isOpen = false}></div>
+  {/if}
 </div>
 
 <style lang="scss">
-  button.history {
-    background: transparent;
-    width: 100%;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .root {
     height: 100%;
-    color: var(--foreground);
+    button.history {
+      background: transparent;
+      width: 100%;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: var(--foreground);
+    }
+    .slot {
+      position: fixed;
+      z-index: 999;
+      top: calc(var(--headerHeight) + 40px);
+      left: 30px;
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--codeBack);
+      border-radius: 20px;
+      width: var(--searchWidth);
+      max-height: 600px;
+      max-width: calc(100vw - 30px);
+      height: calc(100dvh - 40px);
+      transition: all 0.25s ease;
+      &.isClosed {
+        transform: translate3d(calc(50% - 20px), calc(-50% - 20px), 0) scale(0);
+      }
+      @media (max-width: 830px) {
+        width: calc(100vw - 50px);
+      }
+    }
+    .background {
+      z-index: 500;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100dvh;
+    }
   }
 </style>
