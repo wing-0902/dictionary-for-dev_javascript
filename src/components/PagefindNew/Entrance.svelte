@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import PullToDelete from "./PullToDelete.svelte";
-  import ResultSlot from "./ResultSlot.svelte";
-  import Empty from "./Empty.svelte";
+  import { onMount } from 'svelte';
+  import PullToDelete from './PullToDelete.svelte';
+  import ResultSlot from './ResultSlot.svelte';
+  import Empty from './Empty.svelte';
 
   export let allList;
 
@@ -13,20 +13,25 @@
   import Config from './Config.svelte';
   import InputSlot from './Slot.svelte';
 
-  $: pullComponent =
-    searchWord === '' ? Empty :
-    PullToDelete;
+  $: pullComponent = searchWord === '' ? Empty : PullToDelete;
 </script>
 
-<div class='root'>
-  <div class='config'>
-    <InputSlot bind:searchWord={searchWord} />
-    <Config bind:searchMode={searchMode} />
+<div class="root">
+  <div class="config">
+    <InputSlot bind:searchWord />
+    <Config bind:searchMode />
   </div>
-  <div class='result'>
-    <div class='resultSlot'>
-      <svelte:component this={pullComponent} on:pull={() => searchWord = '' }>
-        <ResultSlot searchWord={searchWord} searchMode={searchMode} allList={allList} />
+  <div class="result">
+    <div class="resultSlot">
+      <svelte:component
+        this={pullComponent}
+        on:pull={() => (searchWord = '')}
+      >
+        <ResultSlot
+          {searchWord}
+          {searchMode}
+          {allList}
+        />
       </svelte:component>
     </div>
   </div>

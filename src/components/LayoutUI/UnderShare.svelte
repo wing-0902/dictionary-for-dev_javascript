@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import { renderSVG } from 'uqr';
 
   import { onMount } from 'svelte';
@@ -9,7 +9,7 @@
     if (Boolean(navigator.share)) {
       shareAvailable = true;
     }
-  })
+  });
 
   let captureElement: any;
   import html2canvas from 'html2canvas';
@@ -17,28 +17,28 @@
     if (!captureElement) return;
 
     const canvas = await html2canvas(captureElement, {
-      backgroundColor: "black"
+      backgroundColor: 'black'
     });
 
-    const image = canvas.toDataURL("image/png");
+    const image = canvas.toDataURL('image/png');
 
     canvas.toBlob(async (blob) => {
       if (!blob) {
-        console.error("Blobの作成に失敗しました");
+        console.error('Blobの作成に失敗しました');
         return;
       }
 
-      const file = new File([blob], `qrcode_${shareTitle}.png`, { type: "image/png" });
-    
+      const file = new File([blob], `qrcode_${shareTitle}.png`, { type: 'image/png' });
+
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
           await navigator.share({
             files: [file],
-            title: `QR CODE | ${shareTitle}`,
+            title: `QR CODE | ${shareTitle}`
           });
-          console.log("共有成功！");
+          console.log('共有成功！');
         } catch (error) {
-          console.error("共有に失敗しました:", error);
+          console.error('共有に失敗しました:', error);
         }
       } else {
         const link = document.createElement('a');
@@ -46,9 +46,9 @@
         link.download = `QR_CODE | ${shareTitle}`;
         link.click();
       }
-    }, "image/png");
+    }, 'image/png');
   }
-  
+
   export let shareTitle: string;
   export let shareUrl: string;
 
@@ -60,7 +60,7 @@
   let open = false;
 
   function handleClick() {
-	  open = !open;
+    open = !open;
   }
 
   function copyUrl() {
@@ -70,8 +70,8 @@
 
   const pageShareData = {
     title: shareTitle,
-    url: shareUrl,
-  }
+    url: shareUrl
+  };
 
   function openShareSheet() {
     open = false;
@@ -79,18 +79,18 @@
       if (navigator.share) {
         navigator.share(pageShareData);
       } else {
-        alert('このブラウザは対応していません．')
+        alert('このブラウザは対応していません．');
       }
     } catch (error) {
-      alert('不明なエラー')
+      alert('不明なエラー');
     }
   }
 
-  const svgCode = renderSVG(shareUrl, {})
-  
+  const svgCode = renderSVG(shareUrl, {});
+
   const coloredSvg = svgCode
     .replace(/fill="black"/g, 'fill="#ffffff"')
-    .replace(/fill="white"/g, 'fill="#00000000"')
+    .replace(/fill="white"/g, 'fill="#00000000"');
 
   // キー
   function handleKeydown(event: any) {
@@ -102,23 +102,35 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class='root'>
+<div class="root">
   <button on:click={handleClick}>
     <Share />
   </button>
 
-  <div class='detail' class:isOpen={open} class:isClose={!open}>
-    <button class='closeArrow' on:click={() => { open = false; }}>
+  <div
+    class="detail"
+    class:isOpen={open}
+    class:isClose={!open}
+  >
+    <button
+      class="closeArrow"
+      on:click={() => {
+        open = false;
+      }}
+    >
       <GoDown />
     </button>
-    <div class='detailContent'>
-      <div class='slot qrSlot'>
+    <div class="detailContent">
+      <div class="slot qrSlot">
         <h3>QRコード</h3>
-        <div bind:this={captureElement} class='qrSvgSlot'>
+        <div
+          bind:this={captureElement}
+          class="qrSvgSlot"
+        >
           {@html coloredSvg}
         </div>
       </div>
-      <div class='slot shareSlot'>
+      <div class="slot shareSlot">
         <h3>共有</h3>
         <button on:click={copyUrl}>
           <Copy />
@@ -138,13 +150,15 @@
     </div>
   </div>
 
-  {#if (open)}
+  {#if open}
     <div
-      class='backgroundSlot'
-      tabindex='0'
+      class="backgroundSlot"
+      tabindex="0"
       aria-label="メニューを閉じる"
-      on:click|preventDefault={() => { open = false; }}>
-    </div>
+      on:click|preventDefault={() => {
+        open = false;
+      }}
+    ></div>
   {/if}
 </div>
 
@@ -167,7 +181,7 @@
       position: fixed;
       top: 150%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       background: color-mix(in srgb, var(--codeBack) 80%);
       border: 2.5px solid var(--codeBack);
       border-radius: 10px;

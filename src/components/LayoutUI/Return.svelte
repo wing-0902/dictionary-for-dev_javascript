@@ -1,7 +1,7 @@
-<script lang='ts'>
-  import { onMount } from "svelte";
+<script lang="ts">
+  import { onMount } from 'svelte';
 
-  import ArrowBack from "../Icons/ArrowBack.svg.svelte";
+  import ArrowBack from '../Icons/ArrowBack.svg.svelte';
 
   let query: string = '';
   let mode: string = '';
@@ -9,26 +9,21 @@
   export let href: string;
   export let show: boolean;
 
-  const linkHref =
-    href === '検索' ? "/" :
-    href === 'ライセンス' ? "/license/" :
-    "/";
-  
+  const linkHref = href === '検索' ? '/' : href === 'ライセンス' ? '/license/' : '/';
+
   onMount(async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const initialQuery = urlParams.get('q') ?? '';
     const initialMode = urlParams.get('m') ?? '見出し';
     query = initialQuery;
     mode = initialMode;
-  })
+  });
 </script>
 
 {#if show}
-  <div class='root'>
+  <div class="root">
     <p>
-      <a
-        href={linkHref}
-      >
+      <a href={linkHref}>
         <ArrowBack />
         <span>戻る</span>
       </a>

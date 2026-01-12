@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
@@ -23,9 +23,9 @@
 
   function onTouchEnd() {
     if (pullDistance > THRESHOLD) {
-      dispatch("pull"); // 親に通知
+      dispatch('pull'); // 親に通知
     }
-    
+
     pulling = false;
     pullDistance = 0;
   }
@@ -45,12 +45,12 @@
       下に引っ張って...
     {/if}
   </div>
-  <div class='slot'>
+  <div class="slot">
     <slot />
   </div>
 </div>
-  
-<style lang='scss'>
+
+<style lang="scss">
   .container {
     margin-top: -20px;
     transition: transform 0.2s ease;
@@ -67,4 +67,3 @@
     }
   }
 </style>
-  

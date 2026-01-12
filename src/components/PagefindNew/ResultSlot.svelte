@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   export let searchWord: string;
   export let searchMode: string;
   export let allList;
@@ -8,27 +8,31 @@
   import TextPagefind from './pagefind/Text.svelte';
 </script>
 
-<section class='root'>
-  {#if (searchMode === '見出し')}
-    <TitlePagefind allList={allList} searchWord={searchWord} />
+<section class="root">
+  {#if searchMode === '見出し'}
+    <TitlePagefind
+      {allList}
+      {searchWord}
+    />
   {:else if searchWord === ''}
-    <div class='message'>
-      {#if (searchMode === '用例')}
+    <div class="message">
+      {#if searchMode === '用例'}
         <p>このモードでは，コードブロック内の用例を検索します．</p>
-      {:else if (searchMode === '全文')}
+      {:else if searchMode === '全文'}
         <p>このモードでは，コンテンツの全文を検索できます．</p>
       {:else}
         <p>検索モードを選択してください．</p>
       {/if}
     </div>
+  {:else if searchMode === '用例'}
+    <ExamplePagefind query={searchWord} />
+  {:else if searchMode === '全文'}
+    <TextPagefind query={searchWord} />
   {:else}
-    {#if searchMode === '用例'}
-      <ExamplePagefind query={searchWord} />
-    {:else if searchMode === '全文'}
-      <TextPagefind query={searchWord} />
-    {:else}
-      <TitlePagefind allList={allList} searchWord={searchWord} />
-    {/if}
+    <TitlePagefind
+      {allList}
+      {searchWord}
+    />
   {/if}
 </section>
 

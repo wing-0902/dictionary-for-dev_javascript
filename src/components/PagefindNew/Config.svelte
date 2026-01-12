@@ -9,12 +9,12 @@
     searchMode = toMode;
   }
 
-  onMount(async() => {
+  onMount(async () => {
     searchMode = sessionStorage.getItem('searchMode') ?? '見出し';
-  })
+  });
 </script>
 
-<div class='root'>
+<div class="root">
   <button
     on:click={() => changeMode('見出し')}
     disabled={searchMode === '見出し'}
@@ -35,7 +35,7 @@
   </button>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .root {
     --side-margin: 7px;
     margin: 0 var(--side-margin);

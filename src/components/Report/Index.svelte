@@ -1,13 +1,13 @@
 <script lang="ts">
-  import Required from "$components/Form/Required.svelte";
-  import { preventDefault } from "svelte/legacy";
+  import Required from '$components/Form/Required.svelte';
+  import { preventDefault } from 'svelte/legacy';
 
   import { onMount } from 'svelte';
 
-  import { reportToDel } from "$components/Form/formSessionStorage.mjs";
-  import { isValidEmail } from "../../data/emailValidation.mts";
+  import { reportToDel } from '$components/Form/formSessionStorage.mjs';
+  import { isValidEmail } from '../../data/emailValidation.mts';
 
-  import { Turnstile } from "svelte-turnstile";
+  import { Turnstile } from 'svelte-turnstile';
 
   // フォーム内で使用する変数
   let username: string;
@@ -29,7 +29,7 @@
     reportTitle = sessionStorage.getItem('report_title') ?? '';
     reportMsg = sessionStorage.getItem('report_message') ?? '';
     hydrated = true;
-  })
+  });
 
   $: if (hydrated) {
     sessionStorage.setItem('username_form', username);
@@ -38,21 +38,15 @@
     sessionStorage.setItem('report_message', reportMsg);
   }
 
-  $: errorMsgAboutEmail = 
-    email === '' || isValidEmail(email) ? '　'
-    : 'メールアドレスの形式にしてください．'
+  $: errorMsgAboutEmail =
+    email === '' || isValidEmail(email) ? '　' : 'メールアドレスの形式にしてください．';
 
-  $: isValid = 
-    isValidEmail(email)
-    &&
-    reportTitle !== ''
-    &&
-    reportMsg !== ''
-    &&
-    username !== ''
-    &&
-    agreeOnPolicy
-
+  $: isValid =
+    isValidEmail(email) &&
+    reportTitle !== '' &&
+    reportMsg !== '' &&
+    username !== '' &&
+    agreeOnPolicy;
 
   async function handleSubmit(event: Event) {
     const form = event.target as HTMLFormElement;
@@ -62,14 +56,14 @@
     let hasError = false;
     if (!agreeOnPolicy) {
       hasError = true;
-      alert('規約に同意していただく必要があります')
+      alert('規約に同意していただく必要があります');
     }
 
     // Turnstile
     const token = formData.get('cf-turnstile-response');
     if (!token) {
       hasError = true;
-      alert('Turnstileトークンがありません．ボットでないことの検証を完了してください．')
+      alert('Turnstileトークンがありません．ボットでないことの検証を完了してください．');
     }
 
     // ユーザー名
@@ -81,19 +75,19 @@
     // メール
     if (email === '' || !isValidEmail(email)) {
       hasError = true;
-      alert('メールアドレスが無効です．')
+      alert('メールアドレスが無効です．');
     }
 
     // タイトル
     if (reportTitle === '') {
       hasError = true;
-      alert('報告のタイトルを入力してください．')
+      alert('報告のタイトルを入力してください．');
     }
 
     // 本文
     if (reportMsg === '') {
       hasError = true;
-      alert('報告の本文を入力してください．')
+      alert('報告の本文を入力してください．');
     }
 
     if (hasError) {
@@ -104,7 +98,7 @@
       // fetch APIを使ってサーバーにPOSTリクエストを送信
       const response = await fetch('/api/report', {
         method: 'POST',
-        body: formData,
+        body: formData
       });
 
       const result = await response.json();
@@ -130,43 +124,86 @@
   let policyTouched: boolean = false;
 </script>
 
-<div class='root'>
+<div class="root">
   <form on:submit|preventDefault={handleSubmit}>
-    <fieldset class='aboutYou'>
+    <fieldset class="aboutYou">
       <legend>あなたについて</legend>
-      <div class='spacer'>
+      <div class="spacer">
         <Required />
-        <label for='name'>お名前</label><br/>
-        <input class:error={nameTouched && (username === '')} on:focus={() => nameTouched = true} name='name' placeholder='お名前' type='text' id='name' bind:value={username} class='formTextSlot' />
+        <label for="name">お名前</label><br />
+        <input
+          class:error={nameTouched && username === ''}
+          on:focus={() => (nameTouched = true)}
+          name="name"
+          placeholder="お名前"
+          type="text"
+          id="name"
+          bind:value={username}
+          class="formTextSlot"
+        />
       </div>
       <br />
-      <div class='spacer'>
+      <div class="spacer">
         <Required />
-        <label for='email'>メールアドレス</label><br/>
-        <input class:error={emailTouched && (email === '' || !isValidEmail(email))} on:focus={() => emailTouched = true} name='email' placeholder='your@dictionary4.dev' type='email' id='email' bind:value={email} class='formTextSlot' />
+        <label for="email">メールアドレス</label><br />
+        <input
+          class:error={emailTouched && (email === '' || !isValidEmail(email))}
+          on:focus={() => (emailTouched = true)}
+          name="email"
+          placeholder="your@dictionary4.dev"
+          type="email"
+          id="email"
+          bind:value={email}
+          class="formTextSlot"
+        />
       </div>
       <p>{errorMsgAboutEmail}</p>
     </fieldset>
-    <fieldset class='本題'>
+    <fieldset class="本題">
       <legend>レポート</legend>
-      <div class='spacer'>
+      <div class="spacer">
         <Required />
-        <label for='report_title'>タイトル</label><br/>
-        <input class:error={titleTouched && (reportTitle === '')} on:focus={() => titleTouched = true} name='report_title' placeholder='タイトル' type='text' bind:value={reportTitle} class='formTextSlot' />
+        <label for="report_title">タイトル</label><br />
+        <input
+          class:error={titleTouched && reportTitle === ''}
+          on:focus={() => (titleTouched = true)}
+          name="report_title"
+          placeholder="タイトル"
+          type="text"
+          bind:value={reportTitle}
+          class="formTextSlot"
+        />
       </div>
       <div>
         <Required />
-        <label for='report_message'>本文</label><br/>
-        <textarea class:error={messageTouched && (reportMsg === '')} on:focus={() => messageTouched = true} name='report_message' placeholder='ここに本文を入力...' bind:value={reportMsg} class='formTextSlot'></textarea>
+        <label for="report_message">本文</label><br />
+        <textarea
+          class:error={messageTouched && reportMsg === ''}
+          on:focus={() => (messageTouched = true)}
+          name="report_message"
+          placeholder="ここに本文を入力..."
+          bind:value={reportMsg}
+          class="formTextSlot"
+        ></textarea>
       </div>
     </fieldset>
-    <Turnstile theme='dark' siteKey='0x4AAAAAACDaRh_Fzk8DXhP1' />
+    <Turnstile
+      theme="dark"
+      siteKey="0x4AAAAAACDaRh_Fzk8DXhP1"
+    />
     <label>
-      <input on:focus={() => policyTouched = true} type='checkbox' bind:checked={agreeOnPolicy} />
+      <input
+        on:focus={() => (policyTouched = true)}
+        type="checkbox"
+        bind:checked={agreeOnPolicy}
+      />
       フォームの規約に同意する
     </label>
-    <div class='submitBtnBox'>
-      <button type='submit' disabled={!isValid}>
+    <div class="submitBtnBox">
+      <button
+        type="submit"
+        disabled={!isValid}
+      >
         送信
       </button>
     </div>

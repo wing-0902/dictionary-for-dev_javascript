@@ -11,53 +11,77 @@
 
   onMount(() => {
     if ((sessionStorage.getItem('report_status') ?? '') !== 'alreadySent') {
-      if ((sessionStorage.getItem('report_status') ?? '') === 'checked' ) {
+      if ((sessionStorage.getItem('report_status') ?? '') === 'checked') {
         sessionStorage.removeItem('report_status');
-        window.location.href = '/'
+        window.location.href = '/';
       } else {
-        window.location.href = '/form/report/'
+        window.location.href = '/form/report/';
       }
     } else {
       username = sessionStorage.getItem('username_form') ?? '';
-      email = sessionStorage.getItem("email_form") ?? '';
-      reportTitle = sessionStorage.getItem("report_title") ?? '';
-      reportMsg = sessionStorage.getItem("report_message") ?? '';
+      email = sessionStorage.getItem('email_form') ?? '';
+      reportTitle = sessionStorage.getItem('report_title') ?? '';
+      reportMsg = sessionStorage.getItem('report_message') ?? '';
 
       for (const i of reportToDel) {
         sessionStorage.removeItem(i);
       }
       sessionStorage.setItem('report_status', 'checked');
     }
-  })
+  });
 </script>
 
-<div class='root'>
+<div class="root">
   <section>
-    <fieldset class='aboutYou'>
+    <fieldset class="aboutYou">
       <legend>あなたについて</legend>
-      <div class='spacer'>
+      <div class="spacer">
         <Required />
-        <label for='name'>お名前</label><br/>
-        <input readonly name='name' type='text' value={username} class='formTextSlot' />
+        <label for="name">お名前</label><br />
+        <input
+          readonly
+          name="name"
+          type="text"
+          value={username}
+          class="formTextSlot"
+        />
       </div>
       <br />
-      <div class='spacer'>
+      <div class="spacer">
         <Required />
-        <label for='email'>メールアドレス</label><br/>
-        <input readonly name='email' type='email' value={email} class='formTextSlot' />
+        <label for="email">メールアドレス</label><br />
+        <input
+          readonly
+          name="email"
+          type="email"
+          value={email}
+          class="formTextSlot"
+        />
       </div>
     </fieldset>
-    <fieldset class='本題'>
+    <fieldset class="本題">
       <legend>レポート</legend>
-      <div class='spacer'>
+      <div class="spacer">
         <Required />
-        <label for='report_title'>タイトル</label><br/>
-        <input readonly name='report_title' type='text' value={reportTitle} class='formTextSlot' />
+        <label for="report_title">タイトル</label><br />
+        <input
+          readonly
+          name="report_title"
+          type="text"
+          value={reportTitle}
+          class="formTextSlot"
+        />
       </div>
       <div>
         <Required />
-        <label for='report_message'>本文</label><br/>
-        <textarea readonly name='report_message' placeholder='ここに本文を入力...' value={reportMsg} class='formTextSlot'></textarea>
+        <label for="report_message">本文</label><br />
+        <textarea
+          readonly
+          name="report_message"
+          placeholder="ここに本文を入力..."
+          value={reportMsg}
+          class="formTextSlot"
+        ></textarea>
       </div>
     </fieldset>
   </section>

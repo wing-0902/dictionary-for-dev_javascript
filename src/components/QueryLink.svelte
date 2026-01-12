@@ -1,12 +1,10 @@
-<script lang='ts'>
+<script lang="ts">
   export let href: string;
 
-  import { addAutoQuery } from "./SearchUI/addQuery.mts";
+  import { addAutoQuery } from './SearchUI/addQuery.mts';
 </script>
 
-<a
-  href={addAutoQuery(href)}
->
+<a href={addAutoQuery(href)}>
   <slot />
 </a>
 
