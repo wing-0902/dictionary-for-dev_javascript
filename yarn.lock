@@ -3508,6 +3508,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dexie@npm:4.2.1":
+  version: 4.2.1
+  resolution: "dexie@npm:4.2.1"
+  checksum: 10c0/2e96bb21fc559290e545b740d943cdaa0cad4281f89e7355c332a8bc83870fc05ae9460be586fdb4b55f3860489070b17234a41a78cf469ed6464f6e0616125b
+  languageName: node
+  linkType: hard
+
 "dezalgo@npm:^1.0.0":
   version: 1.0.4
   resolution: "dezalgo@npm:1.0.4"
@@ -3540,6 +3547,7 @@ __metadata:
     alpinejs: "npm:^3.15.2"
     astro: "npm:5.16.8"
     codemirror: "npm:^6.0.2"
+    dexie: "npm:4.2.1"
     html2canvas: "npm:^1.4.1"
     license-checker: "npm:^25.0.1"
     localforage: "npm:^1.10.0"
