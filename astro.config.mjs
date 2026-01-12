@@ -15,6 +15,9 @@ export default defineConfig({
   integrations: [svelte(), vue(), mdx(), sitemap(), markdoc(), alpinejs({
     entrypoint: '/src/entrypoint',
   })],
+  prefetch: {
+    defaultStrategy: 'viewport',
+  },
   experimental: {
     fonts: [
       {
