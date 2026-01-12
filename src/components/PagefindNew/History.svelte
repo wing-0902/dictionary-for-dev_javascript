@@ -63,13 +63,29 @@
     <h3>検索履歴</h3>
     <ul>
       {#each historyList as word}
-        <li
-          onclick={() => handleClick(word)}
-          role="button"
-          tabindex='0'
-          aria-label={`${word}を検索`}
-        >
-          {word}
+        <li>
+          <button
+            aria-label={`${word}を検索`}
+            onclick={() => handleClick(word)}
+            class='searchOne'
+          >
+            {word}
+          </button>
+          <button
+            class="delOne"
+            aria-label={`${word}を削除`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="currentColor"
+              ><path
+                d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"
+              /></svg
+            >
+          </button>
         </li>
       {:else}
         <p>履歴がありません．</p>
@@ -144,8 +160,24 @@
           display: flex;
           align-items: center;
           border-radius: 20px;
-          &:hover {
+          &:has(.searchOne:hover) {
             background-color: var(--codeBack);
+          }
+          justify-content: space-between;
+          button {
+            background-color: transparent;
+            border: none;
+            color: var(--foreground);
+            font-size: 18px;
+            height: 100%;
+            &.searchOne {
+              width: 100%;
+              text-align: left;
+            }
+            &.delOne {
+              display: flex;
+              align-items: center;
+            }
           }
         }
         p {
