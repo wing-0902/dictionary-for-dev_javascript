@@ -102,14 +102,29 @@
         }
       }
 
+      display: flex;
+      flex-direction: column;
       // slotの中身
       h3 {
         text-align: center;
+        margin: 5px 0 0 0;
+        height: 25px;
       }
       ul {
+        height: calc(100% - 25px);
+        overflow-x: hidden;
+        overflow-y: scroll;
         font-size: 18px;
         li {
-          list-style-type: circle;
+          height: 40px;
+          margin: 0 20px 0 -10px;
+          padding-left: 20px;
+          display: flex;
+          align-items: center;
+          border-radius: 20px;
+          &:hover {
+            background-color: var(--codeBack);
+          }
         }
         p {
           text-align: center;
