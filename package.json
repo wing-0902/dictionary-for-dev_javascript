@@ -21,7 +21,8 @@
     "pagefind:code_only": "pagefind --site dist/content --root-selector 'h1, .exampleUsageForPagefindCodeIndex' --output-path dist/code_only_search",
     "postbuild": "yarn pagefind:full && yarn pagefind:title_only && yarn pagefind:code_only",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "yarn exec prettier . --write"
   },
   "dependencies": {
     "@alpinejs/mask": "^3.15.3",
@@ -57,6 +58,8 @@
     "@types/alpinejs": "^3.13.11",
     "@types/alpinejs__mask": "^3.13.4",
     "@types/alpinejs__persist": "^3.13.4",
+    "prettier": "3.7.4",
+    "prettier-plugin-astro": "0.14.1",
     "sharp": "^0.34.5"
   },
   "packageManager": "yarn@4.9.1"
