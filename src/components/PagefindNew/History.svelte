@@ -47,7 +47,7 @@
       position: fixed;
       z-index: 999;
       top: calc(var(--headerHeight) + 40px);
-      left: 30px;
+      left: calc(var(--searchWidth) - 50px);
       backdrop-filter: blur(4px);
       border: 1px solid var(--codeBack);
       border-radius: 20px;
@@ -57,10 +57,13 @@
       height: calc(100dvh - 40px);
       transition: all 0.25s ease;
       &.isClosed {
-        transform: translate3d(calc(50% - 20px), calc(-50% - 20px), 0) scale(0);
+        transform: translate3d(-50%, calc(-50% - 20px), 0) scale(0);
       }
       @media (max-width: 830px) {
         width: calc(100vw - 50px);
+        &.isClosed {
+          transform: translate3d(calc(50% - 20px), calc(-50% - 20px), 0) scale(0);
+        }
       }
     }
     .background {
