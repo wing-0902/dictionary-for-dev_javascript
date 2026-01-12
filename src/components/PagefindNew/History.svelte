@@ -97,8 +97,9 @@
       }
       @media (max-width: 830px) {
         width: calc(100vw - 50px);
+        left: 30px;
         &.isClosed {
-          transform: translate3d(calc(50% - 20px), calc(-50% - 20px), 0) scale(0);
+          transform: translate3d(calc(50% - 10px), calc(-50% - 20px), 0) scale(0);
         }
       }
 
