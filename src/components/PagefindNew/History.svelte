@@ -65,7 +65,6 @@
       {#each historyList as word}
         <li
           onclick={() => handleClick(word)}
-          onkeydown={() => handleClick(word)}
           role="button"
           tabindex='0'
           aria-label={`${word}を検索`}
