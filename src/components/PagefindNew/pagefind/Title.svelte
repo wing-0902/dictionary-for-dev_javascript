@@ -1,3 +1,5 @@
+<!-- Runes mode -->
+
 <script lang="ts">
   import { 結果なし } from './msg.mts';
   import saveHistory from './saveHistoryToIndexedDB.mts';
@@ -47,7 +49,7 @@
             href={`/content/${result.slug}`}
             data-astro-prefetch="hover"
             class="項目リンク"
-            onclick={() => handleSave(searchWord)} 
+            onmousedown={() => handleSave(searchWord)} 
           >
             <h2>{result.data.title}</h2>
           </a>

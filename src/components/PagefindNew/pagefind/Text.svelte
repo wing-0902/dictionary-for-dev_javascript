@@ -84,6 +84,16 @@
       clearTimeout(debounceTimer);
     }
   });
+
+  import saveHistory from './saveHistoryToIndexedDB.mts';
+  async function handleSave(word: string) {
+    if (!word || word.trim() === '') return;
+
+    // ブラウザであれば
+    if (typeof window !== 'undefined') {
+      await saveHistory(word);
+    }
+  }
 </script>
 
 <div class="search-output">
@@ -98,6 +108,7 @@
           <a
             class="項目リンク"
             href={result.url}
+            on:mousedown={() => handleSave(query)}
           >
             <h2>{result.meta.title || result.url}</h2>
             <p class="詳細">{@html result.excerpt}</p>
@@ -108,7 +119,7 @@
             {#each result.sub_results as subResult, index}
               {#if index > 0}
                 <li class="中身">
-                  <a href={subResult.url}>
+                  <a href={subResult.url} on:mousedown={() => handleSave(query)}>
                     <h3 class="タイトル">{subResult.title}</h3>
                   </a>
                 </li>
