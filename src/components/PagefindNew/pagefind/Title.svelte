@@ -29,10 +29,10 @@
 
   // 保存処理のラッパー
   async function handleSave(word: string) {
-    if (!word || word.trim() === "") return;
-    
+    if (!word || word.trim() === '') return;
+
     // ブラウザ環境であることを確認
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       await saveHistory(word);
     }
   }
@@ -49,7 +49,7 @@
             href={`/content/${result.slug}`}
             data-astro-prefetch="hover"
             class="項目リンク"
-            onmousedown={() => handleSave(searchWord)} 
+            onmousedown={() => handleSave(searchWord)}
           >
             <h2>{result.data.title}</h2>
           </a>
