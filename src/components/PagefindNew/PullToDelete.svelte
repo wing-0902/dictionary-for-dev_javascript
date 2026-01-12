@@ -63,7 +63,7 @@
       opacity: 0.7;
     }
     .slot {
-      margin-top: 24px;
+      margin-top: 12px;
     }
   }
 </style>

@@ -30,18 +30,21 @@
 
 <div class='root'>
   <ul>
-    {#each searchResult as result}
-      <hr />
-      <li>
-        <a href={`/content/${result.slug}`} data-astro-prefetch="hover" class='項目リンク'>
-          <h2>{result.data.title}</h2>
-        </a>
-      </li>
+    {#if searchResult.length > 0}
+      <p class='status'>{searchResult.length}件表示中</p>
+      {#each searchResult as result}
+        <hr />
+        <li>
+          <a href={`/content/${result.slug}`} data-astro-prefetch="hover" class='項目リンク'>
+            <h2>{result.data.title}</h2>
+          </a>
+        </li>
+      {/each}
     {:else}
       <li>
         <p class='status'>{結果なし}</p>
       </li>
-    {/each}
+    {/if}
     <hr/>
   </ul>
 </div>
@@ -69,11 +72,10 @@
             font-size: 20px;
           }
         }
-        .status {
-          width: 100%;
-          text-align: center;
-        }
       }
+    }
+    p.status {
+      text-align: center;
     }
   }
 </style>
