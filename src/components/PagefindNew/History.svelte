@@ -1,7 +1,7 @@
 <script lang="ts">
   let isOpen = $state(false);
 
-  let { currentQuery = $bindable() }: { currentQuery: string} = $props();
+  let { currentQuery = $bindable() }: { currentQuery: string } = $props();
 
   import { liveQuery } from 'dexie';
   import { db } from './db.ts';
@@ -23,6 +23,18 @@
     // コンポーネント破棄時に購読解除
     return () => subscription.unsubscribe();
   });
+
+  import saveHistory from './pagefind/saveHistoryToIndexedDB.mts';
+  async function handleClick(newQuery: string) {
+    if (!newQuery || newQuery.trim() === '') return;
+
+    // ブラウザ環境で
+    if (typeof window !== 'undefined') {
+      await saveHistory(newQuery);
+      currentQuery = newQuery;
+      isOpen = false;
+    }
+  }
 </script>
 
 <div class="root">
@@ -51,7 +63,15 @@
     <h3>検索履歴</h3>
     <ul>
       {#each historyList as word}
-        <li>{word}</li>
+        <li
+          onclick={() => handleClick(word)}
+          onkeydown={() => handleClick(word)}
+          role="button"
+          tabindex='0'
+          aria-label={`${word}を検索`}
+        >
+          {word}
+        </li>
       {:else}
         <p>履歴がありません．</p>
         <p>まずは検索してみましょう．</p>
