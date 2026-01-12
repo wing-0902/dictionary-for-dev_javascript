@@ -79,7 +79,7 @@
       z-index: 999;
       top: calc(var(--headerHeight) + 40px);
       left: calc(var(--searchWidth) - 50px);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px) brightness(70%);
       border: 1px solid var(--codeBack);
       border-radius: 20px;
       width: var(--searchWidth);
@@ -100,6 +100,11 @@
       // slotの中身
       h3 {
         text-align: center;
+      }
+      ul {
+        p {
+          text-align: center;
+        }
       }
     }
     .background {
