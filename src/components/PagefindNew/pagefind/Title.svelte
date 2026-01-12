@@ -26,6 +26,7 @@
   }
 
   import { 結果なし } from './msg.mts';
+  import saveHistory from './saveHistoryToIndexedDB.mts';
 </script>
 
 <div class='root'>
@@ -35,7 +36,7 @@
       {#each searchResult as result}
         <hr />
         <li>
-          <a href={`/content/${result.slug}`} data-astro-prefetch="hover" class='項目リンク'>
+          <a href={`/content/${result.slug}`} data-astro-prefetch="hover" class='項目リンク' on:focus={() => saveHistory(searchWord)}>
             <h2>{result.data.title}</h2>
           </a>
         </li>
