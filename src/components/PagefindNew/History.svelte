@@ -175,8 +175,14 @@
               text-align: left;
             }
             &.delOne {
+              height: 30px;
+              width: 30px;
               display: flex;
               align-items: center;
+              border-radius: 15px;
+              &:hover {
+                background-color: var(--codeBack);
+              }
             }
           }
         }
