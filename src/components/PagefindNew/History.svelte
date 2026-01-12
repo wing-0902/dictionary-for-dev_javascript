@@ -7,15 +7,13 @@
   let historyList = $state<string[]>([]);
 
   // 履歴を最新順に取得
-  const query = liveQuery(() => 
-    db.history.orderBy('timestamp').reverse().toArray()
-  );
+  const query = liveQuery(() => db.history.orderBy('timestamp').reverse().toArray());
 
   $effect(() => {
     const subscription = query.subscribe({
       next: (val) => {
         // DBが更新されるとここが自動で走り、stateが更新される
-        historyList = val.map(item => item.word);
+        historyList = val.map((item) => item.word);
       },
       error: (err) => console.error(err)
     });
@@ -44,7 +42,10 @@
     </svg>
   </button>
 
-  <div class='slot' class:isClosed={!isOpen}>
+  <div
+    class="slot"
+    class:isClosed={!isOpen}
+  >
     <h3>検索履歴</h3>
     <ul>
       {#each historyList as word}
@@ -57,7 +58,11 @@
   </div>
 
   {#if isOpen}
-    <div class='background' title='履歴を閉じる' onclick={() => isOpen = false}></div>
+    <div
+      class="background"
+      title="履歴を閉じる"
+      onclick={() => (isOpen = false)}
+    ></div>
   {/if}
 </div>
 
