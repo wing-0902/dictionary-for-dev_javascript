@@ -33,7 +33,7 @@
     {#each searchResult as result}
       <hr />
       <li>
-        <a href={`/content/${result.slug}`} class='項目リンク'>
+        <a href={`/content/${result.slug}`} data-astro-prefetch="hover" class='項目リンク'>
           <h2>{result.data.title}</h2>
         </a>
       </li>
