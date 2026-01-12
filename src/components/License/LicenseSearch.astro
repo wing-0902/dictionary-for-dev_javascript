@@ -69,7 +69,7 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
     <ul>
       <template x-for="item in filteredItems" :key="item[0]">
         <li>
-          <a x-bind:href="`/license/${item[0].replace(new RegExp('/', 'g'), '-')}`" >
+          <a data-astro-prefetch="hover" x-bind:href="`/license/${item[0].replace(new RegExp('/', 'g'), '-')}`" >
             <h3 x-text="item[0]"></h3> 
             <span x-text="item[1].licenses + ' License'"></span>
           </a>
