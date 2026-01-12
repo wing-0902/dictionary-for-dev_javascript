@@ -1,6 +1,8 @@
 <script lang="ts">
   let isOpen = $state(false);
 
+  let { currentQuery = $bindable() }: { currentQuery: string} = $props();
+
   import { liveQuery } from 'dexie';
   import { db } from './db.ts';
 

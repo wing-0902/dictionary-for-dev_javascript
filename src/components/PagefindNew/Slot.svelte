@@ -62,7 +62,7 @@
     {/if}
   </div>
   <div class="historySlot">
-    <History />
+    <History bind:currentQuery={searchWord} />
   </div>
 </div>
 
