@@ -19,12 +19,3 @@ export default async function saveHistory(word: string) {
     });
   });
 }
-
-export async function getHistory(): Promise<string[]> {
-  const records = await db
-    .table('history')
-    .orderBy('timestamp') // 古い順に並べる（末尾が最新）
-    .toArray();
-
-  return records.map((r) => r.word);
-}

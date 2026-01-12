@@ -1,5 +1,28 @@
 <script lang="ts">
   let isOpen = $state(false);
+
+  import { liveQuery } from 'dexie';
+  import { db } from './db.ts';
+
+  let historyList = $state<string[]>([]);
+
+  // 履歴を最新順に取得
+  const query = liveQuery(() => 
+    db.history.orderBy('timestamp').reverse().toArray()
+  );
+
+  $effect(() => {
+    const subscription = query.subscribe({
+      next: (val) => {
+        // DBが更新されるとここが自動で走り、stateが更新される
+        historyList = val.map(item => item.word);
+      },
+      error: (err) => console.error(err)
+    });
+
+    // コンポーネント破棄時に購読解除
+    return () => subscription.unsubscribe();
+  });
 </script>
 
 <div class="root">
@@ -22,7 +45,15 @@
   </button>
 
   <div class='slot' class:isClosed={!isOpen}>
-  
+    <h3>検索履歴</h3>
+    <ul>
+      {#each historyList as word}
+        <li>{word}</li>
+      {:else}
+        <p>履歴がありません．</p>
+        <p>まずは検索してみましょう．</p>
+      {/each}
+    </ul>
   </div>
 
   {#if isOpen}
@@ -57,13 +88,18 @@
       height: calc(100dvh - 40px);
       transition: all 0.25s ease;
       &.isClosed {
-        transform: translate3d(-50%, calc(-50% - 20px), 0) scale(0);
+        transform: translate3d(calc(10px - 50%), calc(-50% - 20px), 0) scale(0);
       }
       @media (max-width: 830px) {
         width: calc(100vw - 50px);
         &.isClosed {
           transform: translate3d(calc(50% - 20px), calc(-50% - 20px), 0) scale(0);
         }
+      }
+
+      // slotの中身
+      h3 {
+        text-align: center;
       }
     }
     .background {
