@@ -13,33 +13,34 @@ interface Props {
   content?: string;
 }
 
-const {
-  content = '検索'
-} = Astro.props;
+const { content = '検索' } = Astro.props;
 ---
 
-<div class='root'>
-  {(() => {
-    if (content === 'ライセンス') {
-      return (
-        <>
-          <LicenseSearch />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <PagefindNewEntrance
-            client:load
-            allList={dictEntries}
-            transition:persist />
-        </>
-      );
-    }
-  })()}
+<div class="root">
+  {
+    (() => {
+      if (content === 'ライセンス') {
+        return (
+          <>
+            <LicenseSearch />
+          </>
+        );
+      } else {
+        return (
+          <>
+            <PagefindNewEntrance
+              client:load
+              allList={dictEntries}
+              transition:persist
+            />
+          </>
+        );
+      }
+    })()
+  }
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .root {
     height: calc(100dvh - var(--headerHeight));
     overflow: scroll;

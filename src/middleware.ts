@@ -3,7 +3,7 @@ import { defineMiddleware } from 'astro:middleware';
 export const onRequest = defineMiddleware(async (context, next) => {
   const { request } = context;
   const origin = request.headers.get('origin');
-  
+
   // 許可するドメイン
   const isAllowed = origin && /^https?:\/\/(.+\.)?dictionary4\.dev$/.test(origin);
 
@@ -16,8 +16,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Max-Age': '86400',
-        'Vary': 'Origin',
-      },
+        Vary: 'Origin'
+      }
     });
   }
 
@@ -32,6 +32,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
-    headers: newHeaders,
+    headers: newHeaders
   });
 });

@@ -6,24 +6,25 @@ interface Props {
   shareTitle?: string;
 }
 
-const {
-  showShare = false,
-  shareTitle = '',
-} = Astro.props;
+const { showShare = false, shareTitle = '' } = Astro.props;
 
 const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <div class="root">
-  <div class="left">
-
-  </div>
+  <div class="left"></div>
   <div class="center">
-    {showShare && <Share client:load shareTitle={shareTitle} shareUrl={正規URL} />}
+    {
+      showShare && (
+        <Share
+          client:load
+          shareTitle={shareTitle}
+          shareUrl={正規URL}
+        />
+      )
+    }
   </div>
-  <div class="right">
-
-  </div>
+  <div class="right"></div>
 </div>
 
 <style lang="scss">

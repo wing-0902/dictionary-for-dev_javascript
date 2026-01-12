@@ -27,7 +27,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     request.headers.get('x-forwarded-for')?.split(',')[0].trim();
 
   const typedEnv = locals.runtime.env as RuntimeEnv;
-  
+
   try {
     // リクエストボディからformDataを取得
     const formData = await request.formData();
@@ -50,28 +50,28 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     // エラーがある場合
     if (email && !isValidEmail(email)) {
-      errors.email = 'メールアドレスが無効な形式です．'
+      errors.email = 'メールアドレスが無効な形式です．';
     }
     if (host === 'unknown') {
-      errors.host = 'ホスト名が不明です．'
+      errors.host = 'ホスト名が不明です．';
     }
-    if (comment && comment.length> 500) {
-      errors.comment = 'コメントは500文字以内でお願いします．'
+    if (comment && comment.length > 500) {
+      errors.comment = 'コメントは500文字以内でお願いします．';
     }
     if (!rawScore) {
-      errors.score = "評価は必須項目です．"
+      errors.score = '評価は必須項目です．';
     } else {
       const score = Number(rawScore);
       if (isNaN(score)) {
-        errors.score = "評価は数値で入力する必要があります"
+        errors.score = '評価は数値で入力する必要があります';
       } else if (!Number.isInteger(score)) {
-        errors.score = '評価は整数である必要があります。'
+        errors.score = '評価は整数である必要があります。';
       } else if (score > 5 || score < 1) {
-        errors.score = '評価は1〜5の整数値である必要があります．'
+        errors.score = '評価は1〜5の整数値である必要があります．';
       }
     }
-    if ( !turnstileToken ) {
-      errors.captcha = 'Turnstileトークンがありません'
+    if (!turnstileToken) {
+      errors.captcha = 'Turnstileトークンがありません';
     }
     // Turnstile検証
     if (Object.keys(errors).length === 0) {
@@ -81,14 +81,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
       const turnstileResponse = await fetch(turnstileVerificationUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteip=${ip}&idempotency_key=${id}`,
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteip=${ip}&idempotency_key=${id}`
       });
-      const verificationResult: { success: boolean; 'error-codes'?: string[] } = await turnstileResponse.json();
+      const verificationResult: { success: boolean; 'error-codes'?: string[] } =
+        await turnstileResponse.json();
       if (!verificationResult.success) {
         console.error('Turnstile検証失敗:', verificationResult['error-codes']);
-        errors.turnstile = '不正な操作の可能性があります。ページを再読み込みして再度お試しください．';
+        errors.turnstile =
+          '不正な操作の可能性があります。ページを再読み込みして再度お試しください．';
       }
     }
     if (Object.keys(errors).length > 0) {
@@ -96,11 +98,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({
           message: '入力内容にエラーがあります。',
-          errors: errors, // エラーオブジェクトをクライアントに返します
+          errors: errors // エラーオブジェクトをクライアントに返します
         }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     } else {
@@ -110,25 +112,22 @@ export const POST: APIRoute = async ({ request, locals }) => {
         email: email || undefined,
         rate: Number(rawScore),
         comment: comment || undefined,
-        timestamp: Date.now(),
+        timestamp: Date.now()
       };
 
       // KVに保存
-      await typedEnv.SURVEY_ANSWERS.put(
-        id,
-        JSON.stringify(data)
-      );
+      await typedEnv.SURVEY_ANSWERS.put(id, JSON.stringify(data));
     }
 
-    return new Response(
-      JSON.stringify({ message: 'フォームの送信が成功しました。' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ message: 'フォームの送信が成功しました。' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error('API処理エラー:', error);
-    return new Response(
-      JSON.stringify({ message: 'サーバー側で予期せぬエラーが発生しました。' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ message: 'サーバー側で予期せぬエラーが発生しました。' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 };

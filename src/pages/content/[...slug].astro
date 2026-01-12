@@ -1,33 +1,35 @@
 ---
-import { getCollection, render } from "astro:content";
-import SplitLayout from "../../layouts/SplitLayout.astro";
+import { getCollection, render } from 'astro:content';
+import SplitLayout from '../../layouts/SplitLayout.astro';
 
 export async function getStaticPaths() {
   const bookEntries = await getCollection('dictionary', ({ data }) => {
     return data.draft === false;
   });
-  return bookEntries.map(entry => ({
+  return bookEntries.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry },
-  }))
+    props: { entry }
+  }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await render( entry );
-
+const { Content } = await render(entry);
 ---
 
 <SplitLayout
   title={entry.data.title}
   showShare={true}
 >
-  <div class="root" data-pagefind-body>
+  <div
+    class="root"
+    data-pagefind-body
+  >
     <h1>{entry.data.title}</h1>
     <section class="mdxSection">
       <Content />
     </section>
   </div>
-</Layout>
+</SplitLayout>
 
 <style lang="scss">
   .root {
@@ -46,7 +48,7 @@ const { Content } = await render( entry );
       margin: 0;
       list-style-position: inside;
     }
-    
+
     /* ライトテーマ */
     @media (prefers-color-scheme: light) {
       .shiki {

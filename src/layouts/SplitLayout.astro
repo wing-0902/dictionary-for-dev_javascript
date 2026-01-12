@@ -1,15 +1,15 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import { Font } from "astro:assets";
+import { ClientRouter } from 'astro:transitions';
+import { Font } from 'astro:assets';
 
 import '../styles/globals.scss';
 
-import HeaderContent from "../components/LayoutUI/HeaderContent.astro";
-import Sidebar from "../components/Sidebar.astro";
-import Topbar from "../components/LayoutUI/Topbar.astro";
+import HeaderContent from '../components/LayoutUI/HeaderContent.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Topbar from '../components/LayoutUI/Topbar.astro';
 import Underbar from '../components/LayoutUI/Underbar.astro';
 
-const defaultTitle: string = 'JavaScript - Dictionary for Developers'
+const defaultTitle: string = 'JavaScript - Dictionary for Developers';
 
 interface Props {
   title?: string;
@@ -32,44 +32,75 @@ const {
   fullScreen = false,
   header = '検索',
   leftComponent = header,
-  showShare = false,
-} = Astro.props
+  showShare = false
+} = Astro.props;
 
 let metaTitle: string = '';
 
 if (title === defaultTitle) {
-  metaTitle = title
+  metaTitle = title;
 } else {
-  metaTitle = `${title} | ${defaultTitle}`
+  metaTitle = `${title} | ${defaultTitle}`;
 }
 
-const 正規URL = new URL(Astro.url.pathname, Astro.site).href; 
+const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <html lang="ja">
   <head>
     <!-- 基本情報とAstro -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
 
     <!-- タイトルとSEO -->
     <title>{metaTitle}</title>
-    <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
-    <link rel="canonical" href={正規URL} />
+    <meta
+      name="description"
+      content={description}
+    />
+    {
+      noindex && (
+        <meta
+          name="robots"
+          content="noindex"
+        />
+      )
+    }
+    <link
+      rel="canonical"
+      href={正規URL}
+    />
 
     <ClientRouter />
-    <Font cssVariable="--font-zen-kaku-gothic-new" preload />
-    <Font cssVariable="--font-fira-code" preload />
-    <Font cssVariable="--font-m-plus-1-code" preload />
-    <Font cssVariable="--font-zen-maru-gothic" preload />
+    <Font
+      cssVariable="--font-zen-kaku-gothic-new"
+      preload
+    />
+    <Font
+      cssVariable="--font-fira-code"
+      preload
+    />
+    <Font
+      cssVariable="--font-m-plus-1-code"
+      preload
+    />
+    <Font
+      cssVariable="--font-zen-maru-gothic"
+      preload
+    />
   </head>
   <body>
     <header>
       <HeaderContent header={header} />
     </header>
-    <div class='contentSlot'>
+    <div class="contentSlot">
       <section
         class={`
           searchSlot
@@ -77,7 +108,7 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
           ${fullScreen === true ? 'strictlyHidden' : ''}
         `}
       >
-        <Sidebar content={leftComponent}/>
+        <Sidebar content={leftComponent} />
       </section>
       <section
         class={`
@@ -100,7 +131,8 @@ const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
         <div class="underbar">
           <Underbar
             showShare={showShare}
-            shareTitle={metaTitle}/>
+            shareTitle={metaTitle}
+          />
         </div>
       </section>
     </div>

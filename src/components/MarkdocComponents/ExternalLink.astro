@@ -8,11 +8,11 @@ const isExternal = href.startsWith('http') || href.startsWith('//');
 // const shouldOpenNewTab = isExternal && !isInternal;
 ---
 
-<a 
-  href={href} 
-  title={title} 
-  target={isExternal ? "_blank" : undefined} 
-  rel={isExternal ? "noopener noreferrer nofollow external" : undefined}
+<a
+  href={href}
+  title={title}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer nofollow external' : undefined}
 >
   <slot />
 </a>

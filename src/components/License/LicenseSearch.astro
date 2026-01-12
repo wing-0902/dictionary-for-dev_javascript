@@ -6,13 +6,13 @@ const rawEntries = Object.entries(licenseData);
 
 // licenseEntries は [['pkgName', { pkgInfo }], ...] という形式
 const licenseEntries = rawEntries.filter(
-    ([pkgName]) => pkgName.split('@').slice(0, -1).join('@') !== packageTitle
+  ([pkgName]) => pkgName.split('@').slice(0, -1).join('@') !== packageTitle
 );
 
 const licenseEntriesJson = JSON.stringify(licenseEntries);
 ---
 
-<section class='root'>
+<section class="root">
   <h2>ライセンス一覧</h2>
 
   <div
@@ -51,31 +51,46 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
     }"
   >
     <div class="alpineSearch">
-      <input x-model.debounce.400ms='search' placeholder='入力して検索…' />
-      <template
-        x-if="search != ''"
-      >
+      <input
+        x-model.debounce.400ms="search"
+        placeholder="入力して検索…"
+      />
+      <template x-if="search != ''">
         <button
           aria-label="検索クエリを削除"
           @click="search = ''"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
-            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="currentColor"
+          >
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+            ></path>
           </svg>
         </button>
       </template>
     </div>
     <p><span x-text="filteredItems.length"></span>個のライセンスを表示中</p>
     <ul>
-      <template x-for="item in filteredItems" :key="item[0]">
+      <template
+        x-for="item in filteredItems"
+        :key="item[0]"
+      >
         <li>
-          <a data-astro-prefetch="hover" x-bind:href="`/license/${item[0].replace(new RegExp('/', 'g'), '-')}`" >
-            <h3 x-text="item[0]"></h3> 
+          <a
+            data-astro-prefetch="hover"
+            x-bind:href="`/license/${item[0].replace(new RegExp('/', 'g'), '-')}`"
+          >
+            <h3 x-text="item[0]"></h3>
             <span x-text="item[1].licenses + ' License'"></span>
           </a>
         </li>
       </template>
-      <div class='spacer'></div>
+      <div class="spacer"></div>
     </ul>
   </div>
 </section>
@@ -92,7 +107,7 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
     }
     .alpinejs-slot {
       height: calc(100% - 24px);
-      .alpineSearch{
+      .alpineSearch {
         position: sticky;
         top: 0;
         z-index: 10;
@@ -154,7 +169,8 @@ const licenseEntriesJson = JSON.stringify(licenseEntries);
               margin-bottom: 0;
               filter: brightness(120%);
             }
-            h3, span {
+            h3,
+            span {
               font-family: var(--font-fira-code), var(--font-zen-kaku-gothic-new), monospace;
             }
             span {

@@ -12,23 +12,30 @@ import alpinejs from '@astrojs/alpinejs';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://js.dictionary4.dev',
-  integrations: [svelte(), vue(), mdx(), sitemap(), markdoc(), alpinejs({
-    entrypoint: '/src/entrypoint',
-  })],
+  integrations: [
+    svelte(),
+    vue(),
+    mdx(),
+    sitemap(),
+    markdoc(),
+    alpinejs({
+      entrypoint: '/src/entrypoint'
+    })
+  ],
   prefetch: {
-    defaultStrategy: 'viewport',
+    defaultStrategy: 'viewport'
   },
   experimental: {
     fonts: [
       {
         provider: fontProviders.google(),
-        name: "Fira Code",
-        cssVariable: "--font-fira-code"
+        name: 'Fira Code',
+        cssVariable: '--font-fira-code'
       },
       {
         provider: fontProviders.google(),
         name: 'M PLUS 1 Code',
-        cssVariable: "--font-m-plus-1-code"
+        cssVariable: '--font-m-plus-1-code'
       },
       {
         provider: fontProviders.google(),
@@ -38,38 +45,36 @@ export default defineConfig({
       {
         provider: fontProviders.google(),
         name: 'Zen Maru Gothic',
-        cssVariable: "--font-zen-maru-gothic",
-      },
+        cssVariable: '--font-zen-maru-gothic'
+      }
     ]
   },
 
   markdown: {
     syntaxHighlight: false,
     shikiConfig: {
-      theme: 'night-owl',
-    },
+      theme: 'night-owl'
+    }
   },
 
   adapter: cloudflare({
     imageService: 'compile',
     platformProxy: {
       enabled: true,
-      configPath: 'wrangler.jsonc',
+      configPath: 'wrangler.jsonc'
     },
     routes: {
       extend: {
         exclude: [
-          {pattern: '/content/*'},
-          {pattern: '/_astro/*'},
-          {pattern: '/code_only_search/*'},
-          {pattern: '/content_search/*'},
-          {pattern: '/title_only_search/*'},
+          { pattern: '/content/*' },
+          { pattern: '/_astro/*' },
+          { pattern: '/code_only_search/*' },
+          { pattern: '/content_search/*' },
+          { pattern: '/title_only_search/*' }
         ],
-        include: [
-          {pattern: '/api/*'},
-        ],
+        include: [{ pattern: '/api/*' }]
       }
-    },
+    }
   }),
-  output: 'static',
+  output: 'static'
 });

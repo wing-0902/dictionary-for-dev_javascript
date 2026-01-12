@@ -1,7 +1,7 @@
 ---
-import Search from "../Icons/Search.svg.astro";
-import List from "../Icons/List.svg.astro";
-import ClickHere from "./ClickHere.vue";
+import Search from '../Icons/Search.svg.astro';
+import List from '../Icons/List.svg.astro';
+import ClickHere from './ClickHere.vue';
 
 import QueryLink from '../QueryLink.svelte';
 
@@ -9,15 +9,13 @@ interface Props {
   header?: string;
 }
 
-const {
-  header = '検索'
-} = Astro.props;
+const { header = '検索' } = Astro.props;
 ---
 
 <div class="root">
   <div class="dummy"></div>
   <div class="nav">
-    <a href='/'>
+    <a href="/">
       <div
         class={`
           linkInside
@@ -41,7 +39,8 @@ const {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    .dummy {}
+    .dummy {
+    }
     .nav {
       display: flex;
       a {
@@ -65,6 +64,7 @@ const {
         }
       }
     }
-    .clickHere {}
+    .clickHere {
+    }
   }
 </style>

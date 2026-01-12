@@ -9,12 +9,12 @@ const dictionaryCollection = defineCollection({
     品詞: z.string(),
     jsInclude: z.boolean(),
     tsInclude: z.boolean(),
-    draft: z.boolean().default(false),
-  }),
+    draft: z.boolean().default(false)
+  })
 });
 
 // 3. コレクションを登録するために、単一の`collections`オブジェクトをエクスポート
 //    このキーは、"src/content"のコレクションのディレクトリ名と一致する必要があります。
 export const collections = {
-  'dictionary': dictionaryCollection,
+  dictionary: dictionaryCollection
 };

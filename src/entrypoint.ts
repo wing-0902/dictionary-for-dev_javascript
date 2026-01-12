@@ -5,4 +5,4 @@ import mask from '@alpinejs/mask';
 export default (Alpine: Alpine) => {
   Alpine.plugin(persist);
   Alpine.plugin(mask);
-}
+};

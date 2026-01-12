@@ -8,28 +8,26 @@ export default defineMarkdocConfig({
       render: component('./src/components/MarkdocComponents/CodeLayout.astro'),
       attributes: {
         // https://markdoc.dev/docs/attributes#defining-attributes
-        title: { type: String },
-      },
-    },
+        title: { type: String }
+      }
+    }
   },
   extends: [
     shiki({
       theme: 'night-owl',
       wrap: true,
       langs: [],
-      transformers: [
-        transformerNotationDiff(),
-      ]
-    }),
+      transformers: [transformerNotationDiff()]
+    })
   ],
   nodes: {
     image: {
-      ...nodes.image, 
-      render: component('./src/components/MarkdocComponents/MarkdocImage.astro'),
+      ...nodes.image,
+      render: component('./src/components/MarkdocComponents/MarkdocImage.astro')
     },
     link: {
       ...nodes.link,
-      render: component('./src/components/MarkdocComponents/ExternalLink.astro'),
-    },
-  },
+      render: component('./src/components/MarkdocComponents/ExternalLink.astro')
+    }
+  }
 });
