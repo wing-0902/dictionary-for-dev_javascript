@@ -1,32 +1,39 @@
 <script lang="ts">
-  export let searchWord: string = '';
-  export let allList: any[] = [];
-
-  let searchResult: any[] = allList;
-  let timer: ReturnType<typeof setTimeout>;
-
-  $: {
-    clearTimeout(timer);
-
-    timer = setTimeout(() => {
-      const keywords = searchWord
-        .toLowerCase()
-        .split(/[ 　]+/)
-        .filter((keyword) => keyword.length > 0);
-
-      if (keywords.length === 0) {
-        searchResult = allList;
-      } else {
-        searchResult = allList.filter((item) => {
-          const title = item?.data?.title?.toLowerCase() ?? '';
-          return keywords.every((keyword) => title.includes(keyword));
-        });
-      }
-    }, 0);
-  }
-
   import { 結果なし } from './msg.mts';
   import saveHistory from './saveHistoryToIndexedDB.mts';
+
+  // Svelte 5 の Props 受取
+  let { searchWord = '', allList = [] } = $props();
+
+  // 検索結果の状態管理
+  let searchResult = $state(allList);
+
+  // 検索処理 (derived の代わり、または effect)
+  $effect(() => {
+    const keywords = searchWord
+      .toLowerCase()
+      .split(/[ 　]+/)
+      .filter((k) => k.length > 0);
+
+    if (keywords.length === 0) {
+      searchResult = allList;
+    } else {
+      searchResult = allList.filter((item) => {
+        const title = item?.data?.title?.toLowerCase() ?? '';
+        return keywords.every((keyword) => title.includes(keyword));
+      });
+    }
+  });
+
+  // 保存処理のラッパー
+  async function handleSave(word: string) {
+    if (!word || word.trim() === "") return;
+    
+    // ブラウザ環境であることを確認
+    if (typeof window !== "undefined") {
+      await saveHistory(word);
+    }
+  }
 </script>
 
 <div class="root">
@@ -40,7 +47,7 @@
             href={`/content/${result.slug}`}
             data-astro-prefetch="hover"
             class="項目リンク"
-            on:focus={() => saveHistory(searchWord)}
+            onclick={() => handleSave(searchWord)} 
           >
             <h2>{result.data.title}</h2>
           </a>

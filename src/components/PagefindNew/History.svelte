@@ -107,6 +107,10 @@
         text-align: center;
       }
       ul {
+        font-size: 18px;
+        li {
+          list-style-type: circle;
+        }
         p {
           text-align: center;
         }
